@@ -3,10 +3,10 @@
 
 A brief instruction of the preparation of Observation Graph Tool .
 
-##Introduction about the tools
-###Context
-###Functionality
-###...
+## Introduction about the tools
+### Context
+### Functionality
+### ...
 
 ## Setup Instructions
 
