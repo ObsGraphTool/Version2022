@@ -1,0 +1,122 @@
+PLACE
+  Init,
+  p0,
+  s0,
+  q0,
+  p1,
+  p2,
+  p3,
+  p4,
+  p5,
+  p6,
+  p7,
+  p8,
+  q1,
+  q2,
+  s1,
+  s2,
+  Final,
+  Itinerary,
+  MeansofTravel,
+  Selection,
+  RoutePlanning
+;
+
+MARKING
+  Init:	1
+;
+
+TRANSITION t1
+CONSUME
+  Init: 1;
+PRODUCE
+  p0: 1,
+  s0: 1,
+  q0: 1;
+
+TRANSITION t2
+CONSUME
+  p0: 1,
+  Itinerary: 1;
+PRODUCE
+  p2: 1,
+  p1: 1;
+
+TRANSITION t3
+CONSUME
+  s0: 1;
+PRODUCE
+  Itinerary: 1,
+  s1: 1;
+
+TRANSITION t4
+CONSUME
+  p2: 1;
+PRODUCE
+  p4: 1;
+
+TRANSITION t5
+CONSUME
+  p7: 1;
+PRODUCE
+  p2: 1,
+  p5: 1;
+
+TRANSITION t6
+CONSUME
+  p4: 1,
+  p5: 1;
+PRODUCE
+  p7: 1;
+
+TRANSITION t7
+CONSUME
+  p7: 1,
+  p6: 1;
+PRODUCE
+  p8: 1,
+  RoutePlanning: 1;
+
+TRANSITION t8
+CONSUME
+  p1: 1;
+PRODUCE
+  p3: 1,
+  MeansofTravel: 1;
+
+TRANSITION t9
+CONSUME
+  p3: 1,
+  Selection: 1;
+PRODUCE
+  p5: 1,
+  p6: 1;
+
+TRANSITION t10
+CONSUME
+  q0: 1,
+  MeansofTravel: 1;
+PRODUCE
+  q1: 1;
+
+TRANSITION t11
+CONSUME
+  q1: 1;
+PRODUCE
+  q2: 1,
+  Selection: 1;
+
+TRANSITION t12
+CONSUME
+  s1: 1,
+  RoutePlanning: 1;
+PRODUCE
+  s2: 1;
+
+TRANSITION t13
+CONSUME
+  s2: 1,
+  q2: 1,
+  p8: 1;
+PRODUCE
+  Final: 1;

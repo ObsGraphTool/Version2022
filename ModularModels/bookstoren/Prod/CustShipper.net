@@ -1,0 +1,9 @@
+#place book_to_c
+
+#trans rec_book
+in {book_to_c:<..>;}
+#endtr
+
+#trans ship
+out {book_to_c:<..>;}
+#endtr

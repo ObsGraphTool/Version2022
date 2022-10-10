@@ -1,0 +1,215 @@
+PLACE
+  i1,
+  p11,
+  p12,
+  p13,
+  p14,
+  p15,
+  p16,
+  p17,
+  p18,
+  p19,
+  p110,
+  p111,
+  o1,
+  bOrder,
+  bSpec,
+  bCost,
+  bShip,
+  i2,
+  p21,
+  p22,
+  p23,
+  p24,
+  p25,
+  p26,
+  p27,
+  p28,
+  p29,
+  o2
+;
+
+MARKING
+  i1:	1,
+  i2:	1
+;
+
+TRANSITION order1
+CONSUME
+  i1: 1;
+PRODUCE
+  p11: 1,
+  p13: 1,
+  p16: 1,
+  bOrder: 1;
+  
+
+TRANSITION order2
+CONSUME
+  i2: 1,
+  bOrder: 1;
+PRODUCE
+  p21: 1;
+  
+
+TRANSITION CollectInput
+CONSUME
+  p11: 1;
+PRODUCE
+  p11: 1;
+  
+
+
+TRANSITION spec1
+CONSUME
+  p11: 1;
+PRODUCE
+  p12: 1,
+  bSpec: 1;
+  
+
+TRANSITION spec2
+CONSUME
+  p23: 1,
+  bSpec: 1;
+PRODUCE
+  p24: 1;
+  
+
+TRANSITION ship1
+CONSUME
+  bShip: 1,
+  p12: 1,
+  p15: 1,
+  p110: 1,
+  p111: 1;
+PRODUCE
+  o1: 1;
+  
+
+TRANSITION ship2
+CONSUME
+  p27: 1;
+PRODUCE
+  o2: 1,
+  bShip: 1;
+  
+
+TRANSITION bill
+CONSUME
+  p16: 1;
+PRODUCE
+  p17: 1;
+  
+
+TRANSITION NOK1
+CONSUME
+  p17: 1;
+PRODUCE
+  p16: 1;
+  
+
+TRANSITION PrepareCs
+CONSUME
+  p13: 1;
+PRODUCE
+  p14: 1;
+  
+
+TRANSITION Check
+CONSUME
+  p19: 1;
+PRODUCE
+  p111: 1;
+  
+
+TRANSITION PrepPh
+CONSUME
+  p18: 1;
+PRODUCE
+  p110: 1;
+  
+
+TRANSITION OK
+CONSUME
+  p17: 1;
+PRODUCE
+  p18: 1,
+  p19: 1;
+  
+
+TRANSITION cost1
+CONSUME
+  p25: 1,
+  p29: 1;
+PRODUCE
+  p27: 1,
+  bCost: 1;
+  
+
+TRANSITION cost2
+CONSUME
+  bCost: 1,
+  p14: 1;
+PRODUCE
+  p15: 1;
+  
+
+TRANSITION proc_order
+CONSUME
+  p21: 1;
+PRODUCE
+  p22: 1,
+  p23: 1;
+  
+
+TRANSITION Decide
+CONSUME
+  p22: 1;
+PRODUCE
+  p28: 1;
+  
+
+TRANSITION LongP
+CONSUME
+  p28: 1;
+PRODUCE
+  p29: 1;
+  
+
+TRANSITION ShortP
+CONSUME
+  p28: 1;
+PRODUCE
+  p29: 1;
+  
+
+TRANSITION NOK2
+CONSUME
+  p27: 1;
+PRODUCE
+  p26: 1;
+  
+
+
+TRANSITION Discuss
+CONSUME
+  p24: 1;
+PRODUCE
+  p25: 1;
+  
+
+
+TRANSITION Produce
+CONSUME
+  p27: 1;
+PRODUCE
+  p26: 1;
+  
+
+TRANSITION Assemble
+CONSUME
+  p26: 1;
+PRODUCE
+  p27: 1;
+  

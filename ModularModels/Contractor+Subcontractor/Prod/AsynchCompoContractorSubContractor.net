@@ -1,0 +1,145 @@
+#place i1  mk(<..>)
+#place p11
+#place p12
+#place p13
+#place p14
+#place p15
+#place p16
+#place p17
+#place p18
+#place p19
+#place p110
+#place p111
+#place o1
+
+#place bOrder
+#place bSpec
+#place bCost
+#place bShip
+
+#place i2  mk(<..>)
+#place p21
+#place p22
+#place p23
+#place p24
+#place p25
+#place p26
+#place p27
+#place p28
+#place p29
+#place o2
+
+
+
+#trans order1
+in {i1:<..>;}
+out {p11:<..>;p13:<..>;p16:<..>; bOrder:<..>;}
+#endtr
+
+#trans order2
+in {i2:<..>;bOrder:<..>;}
+out {p21:<..>;}
+#endtr
+
+#trans CollectInput
+in {p11:<..>;}
+out {p11:<..>;}
+#endtr
+
+
+#trans spec1
+in {p11:<..>;}
+out {p12:<..>;bSpec:<..>;}
+#endtr
+
+#trans spec2
+in {p23:<..>;bSpec:<..>;}
+out {p24:<..>;}
+#endtr
+
+#trans ship1
+in {bShip:<..>;p12:<..>;p15:<..>;p110:<..>;p111:<..>;}
+out {o1:<..>;}
+#endtr
+
+#trans ship2
+in {p27:<..>;}
+out {o2:<..>;bShip:<..>;}
+#endtr
+
+#trans bill
+in {p16:<..>;}
+out {p17:<..>;}
+#endtr
+
+#trans NOK1
+in {p17:<..>;}
+out {p16:<..>;}
+#endtr
+
+#trans PrepareCs
+in {p13:<..>;}
+out {p14:<..>;}
+#endtr
+
+#trans Check
+in {p19:<..>;}
+out {p111:<..>;}
+#endtr
+
+#trans PrepPh
+in {p18:<..>;}
+out {p110:<..>;}
+#endtr
+
+#trans OK
+in {p17:<..>;}
+out {p18:<..>;p19:<..>;}
+#endtr
+
+#trans cost2
+in {p25:<..>;p29:<..>;}
+out {p27:<..>; bCost:<..>;}
+#endtr
+
+#trans cost1
+in {bCost:<..>;p14:<..>;}
+out {p15:<..>;}
+#endtr
+
+#trans proc_order
+in {p21:<..>;}
+out {p22:<..>;p23:<..>;}
+#endtr
+
+#trans Decide
+in {p22:<..>;}
+out {p28:<..>;}
+#endtr
+
+#trans LongP
+in {p28:<..>;}
+out {p29:<..>;}
+#endtr
+
+#trans ShortP
+in {p28:<..>;}
+out {p29:<..>;}
+#endtr
+
+
+#trans Discuss
+in {p24:<..>;}
+out {p25:<..>;}
+#endtr
+
+
+#trans Produce
+in {p27:<..>;}
+out {p26:<..>;}
+#endtr
+
+#trans Assemble
+in {p26:<..>;}
+out {p27:<..>;}
+#endtr

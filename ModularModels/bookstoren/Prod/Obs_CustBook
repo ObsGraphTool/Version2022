@@ -1,0 +1,2 @@
+10
+place_c_order rec_acc rec_decl rec_bill pay handle_c_order c_accept c_reject send_bill handle_payement

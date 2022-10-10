@@ -1,0 +1,6 @@
+states
+1
+2
+transitions
+(1, t2 ,2)
+(2, t1 ,1)

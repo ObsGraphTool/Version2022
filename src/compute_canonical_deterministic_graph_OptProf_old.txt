@@ -1,0 +1,548 @@
+void  RdPBDD::compute_canonical_deterministic_graph_OptProf(MDGraph& g)
+{
+    cout<<"COMPUTE CANONICAL DETERMINISTIC GRAPH_________________________ \n";
+        //cout<<"nb bdd var : "<<bdd_varnum()<<endl;
+    double d,tps;
+    d=clock();
+    TabMeta=new bdd[10000];
+    nbmetastate=0;
+    MaxIntBdd=0;
+    typedef pair<Class_Of_State*,bdd> couple;
+    typedef pair<couple, Set> Pair;
+    typedef pair<couple, int> Pairint;
+
+    typedef stack<Pair> pile;
+    typedef stack<Pairint> pileint;
+    //GlobalMf contient lunion des Mf calculé en partant de letat final
+
+    pile st;
+    pileint stmf;
+    NbIt=0;
+    itext=itint=0;
+    Class_Of_State* reached_class;
+    //les transitions observées franchissables
+    Set fire;
+    //les transitions franchissables
+    Set fire2;
+    Set unionfire,intermfire;
+    // size_t max_meta_state_size;
+    //unionpred contient lunion des Mf calculé en partant de letat final
+    //globalBDD contient lunion de tout les marquages calculés
+    bdd globalBDD,unionpred_Mf;
+    bdd Mf;
+    bdd RN;
+    Class_Of_State *c=new Class_Of_State;
+    {
+        // cout<<"Marquage initial :\n";
+        //cout<<bddtable<<M0<<endl;
+        //cout<<"FIN marquage initial :\n";
+        //cout<<"Etat Fianux :\n";
+        //cout<<bddtable<<finalstate<<endl;
+        //cout<<"FIN Etat Finaux :\n";
+        //cout<<"C-> finalstate :\n";
+      //cout<<bddtable<<c->Mf<<endl;
+           //bdd_allsat(finalstate, allsatPrintHandler);
+
+        // cout<<"avant accessible epsilon \n";*/
+        //c->Mf = c->Mf|M0;
+        bdd Complete_meta_state=Accessible_epsilon(M0,c);
+        
+        fire=firable_obs(Complete_meta_state);
+        c->Enable.insert(fire.begin(),fire.end());
+        fire2=firable_trans(Complete_meta_state);
+        
+        set_union(fire2.begin(),fire2.end(),intermfire.begin(),intermfire.end(),inserter(unionfire,unionfire.begin()));
+        intermfire=unionfire;
+      //  cout<<"taille de intermfire est : "<<intermfire.size()<<endl;
+        //cout<<"taille de unionfire est : "<<unionfire.size()<<endl;
+        //cout<<"taille de transitions est : "<<transitions.size()<<endl;
+        /* for(Set::const_iterator i=fire.begin();!(i==fire.end());i++)
+         cout<<"TEST !!  "<<(*i)<<" et "<<transitions[*i].name<<endl;
+         for(Set::const_iterator i=fire2.begin();!(i==fire2.end());i++)
+         cout<<"TEST !!  "<<(*i)<<" et "<<transitions[*i].name<<endl;
+         cout<<"taille de fire2 est : "<<fire2.size()<<endl;*/
+       // intermfire=fire2;
+        //  c->blocage=Set_Bloc(Complete_meta_state);
+        // c->boucle=Set_Div(Complete_meta_state);
+        // c->final=((Complete_meta_state & finalstate)!=bdd_false());
+        // cout<<"ettttttttt "<<Set_Bloc(Complete_meta_state)<<endl;
+        // cout<<"**************Compute LAMDA:************** "<<endl;
+        // cout<<"--------------------"<<endl;
+        c->lamda=computelamda(Complete_meta_state,1);
+		//   cout<<"**************Apres computing LAMDA*******"<<endl;
+
+        //cout<<"--------------------"<<endl<<endl;
+        
+       /* cout<<"Complete_meta_state :\n";
+                     cout<<bddtable<<Complete_meta_state<<endl;
+              cout<<"FIN Complete_meta_state :\n";*/
+             
+
+		globalBDD=Complete_meta_state;
+        //cout << "Global"<< bddtable<< globalBDD<<endl;
+
+		string resgr=strictGrandBDD(globalBDD,finalstate);
+		//cout<<"globalBDD nv est "<<resgr<<" finalstate"<<endl;
+        //cout<<"globalBDDe :\n";
+        //cout<<bddtable<<globalBDD<<endl;
+        //cout<<"Finalstate :\n";
+        //cout<<bddtable<<finalstate<<endl;
+		if (resgr=="sup")
+		{pc=0; 				   }
+		//cout<<"globalBDDe :\n";
+		//      cout<<bddtable<<globalBDD<<endl;
+		//    cout<<"FIN globalBDD :\n";
+		/*  bdd d,tempa=finalstate;
+		while(tempa!=d){
+		
+		//d=bdd_satone(tempa);
+				d=bdd_satoneset(tempa,bdd_support(M0),bddtrue);
+
+		    cout << "true assignementt "<< bddtable<< d<<endl;
+		if(d!=bddfalse)
+		       {  
+				   string stringpc= strictGrand(globalBDD,d);
+				   cout<<"globalBDD est "<<stringpc<<" finalbdd"<<endl;
+				   if (stringpc=="sup")
+					{pc=0;
+					tempa=d;}
+				   }
+		tempa=tempa-d;
+
+
+
+		}*/
+         //cout<<"globalBDD est "<<strictGrand(globalBDD,finalstate)<<" finalbdd"<<endl;
+
+        c->class_state=CanonizeR(Complete_meta_state,0);
+        //  cout<<"Apres CanonizeR nb representant : "<<bdd_pathcount(c->class_state)<<endl;
+        //c->class_state=Complete_meta_state;
+        TabMeta[nbmetastate]=c->class_state;
+        nbmetastate++;
+        old_size=bdd_nodecount(c->class_state);
+        //max_meta_state_size=bdd_pathcount(Complete_meta_state);
+        st.push(Pair(couple(c,Complete_meta_state),fire));
+        stmf.push(Pairint(couple(c,Complete_meta_state),-1));
+
+        /*for(Set::const_iterator i=c->Enable.begin();!(i==c->Enable.end());i++)
+         cout<<"TEST !!  "<<(*i)<<" et "<<transitions[*i].name<<endl;*/
+        bdd fin=finalstate & Complete_meta_state;
+	//Calcul Mf
+	/*        if (fin !=bdd_false())
+        {
+           cout<<"0000000chemin vers final aggregate: ";
+            unionpred_Mf=fin;
+            bdd tempo;
+            
+            do {
+                tempo=unionpred_Mf ;
+                unionpred_Mf=(StepBackward3(unionpred_Mf));
+                
+                
+            }while(!(unionpred_Mf==tempo));
+            
+            do {
+                Pairint pr = stmf.top();
+                int tt=pr.second;
+                //cout<<transitions[tt].name<<" - "<<endl;
+
+                //cout<<transitions[tt].name<<" - "<<endl;
+                if(tt!=-1){
+                    unionpred_Mf = unionpred_Mf | relation[(tt)](unionpred_Mf);
+                    do {
+                        tempo=unionpred_Mf ;
+                        unionpred_Mf=(StepBackward3(unionpred_Mf));
+                        
+                        
+                    }while(!(unionpred_Mf==tempo));
+                }
+                stmf.pop();
+                
+            } while(!stmf.empty());
+            cout<<endl;
+            c->Mf=unionpred_Mf;
+	    // if(unionpred_Mf!=globalBDD)
+            if(c->Mf==bddfalse)
+	    {
+                cout<<"Option to Complete violee"<<endl;
+                opToC=0;
+            }
+
+            
+	    }*/
+        
+        
+    }
+    g.setInitialState(c);
+    g.insert(c);
+    g.nbMarking+=bdd_pathcount(c->class_state);
+    do
+    { //cout<<"\nnbmetastate est : "<<nbmetastate<<endl;
+        Pair  e=st.top();
+        
+        //while(!e.second.empty())
+		//cout<<"size = "<<e.second.size()<<endl;
+		if(e.second.size()!=0)
+       // if(!e.second.empty())
+        {
+            int t = *e.second.begin();
+            cout<<"t : "<<transitions[t].name<<endl;
+            //e.second.erase(t);
+            st.top().second.erase(t);
+            //cout<<"size = "<<e.second.size()<<endl;
+			/*if(e.second.size()==0)
+			{	st.pop();
+				nbmetastate--;
+			}*/
+            double nbnode;
+            reached_class=new Class_Of_State;
+            {
+                //cout<<"Avant Accessible epsilon \n";
+                bdd Complete_meta_state=Accessible_epsilon(get_successor(e.first.second,t),reached_class);
+                //cout<<"Apres accessible epsilon \n";
+                //cout<<"Avant CanonizeR \n";
+                // cout<<"globalBDD nv est "<<strictGrand((Complete_meta_state - (globalBDD&Complete_meta_state)),finalstate)<<" finalbdd"<<endl;
+                 // cout<<"globalBDD nv est "<<strictGrandBDD((Complete_meta_state - (globalBDD&Complete_meta_state)),finalstate)<<" finalstate"<<endl;
+				string resgr=strictGrandBDD((Complete_meta_state - (globalBDD&Complete_meta_state)),finalstate);
+			//cout<<"globalBDD nv est "<<resgr<<" finalstate"<<endl;
+              //  cout<<"globalBDDe :\n";
+                //cout<<bddtable<<globalBDD<<endl;
+                //cout<<"Finalstate :\n";
+                //cout<<bddtable<<finalstate<<endl;
+				if (resgr=="sup")
+				{pc=0; 				   }
+				/* bdd d,tempa=finalstate;
+				while(tempa!=d){
+		
+					//d=bdd_satone(tempa);
+					//extraire le bdd correspondant ‡ un seul chemin vers true
+					d=bdd_satoneset(tempa,bdd_support(M0),bddtrue);
+
+					cout << "true assignement "<< bddtable<< d<<endl;
+					tempa=tempa-d;
+					if(d!=bddfalse)
+					{  
+						string stringpc= strictGrand((Complete_meta_state - (globalBDD&Complete_meta_state)),d);
+						cout<<"globalBDD est "<<stringpc<<" finalbdd"<<endl;
+						if (stringpc=="sup")
+						{	pc=0;
+							tempa=d;
+						}
+					}
+		         
+
+				}*/
+				//globalBDD=Complete_meta_state|globalBDD ;
+                globalBDD=globalBDD | Complete_meta_state ;
+                //cout << "Global"<< bddtable<< globalBDD<<endl;
+
+                reached_class->class_state=CanonizeR(Complete_meta_state,0);
+                //cout<<"Apres CanonizeR \n";
+                // cout<<"Apres CanonizeR nb representant : "<<bdd_pathcount(reached_class->class_state)<<endl;
+                //reached_class->class_state=Complete_meta_state;
+                Class_Of_State* pos=g.find(reached_class);
+                nbnode=bdd_pathcount(reached_class->class_state);
+                   /*  cout<<"Complete_meta_state :\n";
+                     cout<<bddtable<<Complete_meta_state<<endl;
+                     cout<<"FIN Complete_meta_state :\n";*/
+                
+             //   cout<<"RRRRRR"<<endl;
+                if(!pos)
+                {
+                    // reached_class->blocage=Set_Bloc(Complete_meta_state);
+                    // reached_class->boucle=Set_Div(Complete_meta_state);
+                    //reached_class->final=((Complete_meta_state & finalstate)!=bdd_false());
+                    // cout<<"**************Compute LAMDA:************** "<<endl;
+                    //cout<<"--------------------"<<endl;
+                  //  cout<<"ettttttttt "<<Set_Bloc(Complete_meta_state)<<endl;
+                    reached_class->lamda=computelamda(Complete_meta_state,1);
+                    // cout<<"**************Apres computing LAMDA*******"<<endl;
+                    //cout<<"--------------------"<<endl<<endl;
+                    
+                  //  cout<<"hhhh: "<<reached_class->final<<endl;
+                     /*cout<<"Complete_meta_state :\n";
+                     cout<<bddtable<<Complete_meta_state<<endl;
+                     cout<<"FIN Complete_meta_state :\n";*/
+                    // cout<<"finalstate :\n";
+                     //cout<<bddtable<<finalstate<<endl;
+                     //cout<<"FIN finalstate :\n"
+                    fire=firable_obs(Complete_meta_state);
+                    reached_class->Enable.insert(fire.begin(),fire.end());
+
+                    fire2=firable_trans(Complete_meta_state);
+                    /* for(Set::const_iterator i=fire.begin();!(i==fire.end());i++)
+                     cout<<"TEST !!  "<<(*i)<<" et "<<transitions[*i].name<<endl;
+                     for(Set::const_iterator i=fire2.begin();!(i==fire2.end());i++)
+                     cout<<"TEST !!  "<<(*i)<<" et "<<transitions[*i].name<<endl;
+                     cout<<"taille de fire2 est : "<<fire2.size()<<endl;*/
+                   // cout<<"Complete_meta_state :\n";
+                     //                            bdd_allsat(Complete_meta_state, allsatPrintHandler);
+
+              //       cout<<bddtable<<Complete_meta_state<<endl;
+                //     cout<<"FIN Complete_meta_state :\n";
+                  //                        cout<<"nombre de chemins existants"<<bdd_pathcount(Complete_meta_state)<<endl; 
+					
+                    set_union(fire2.begin(),fire2.end(),intermfire.begin(),intermfire.end(),inserter(unionfire,unionfire.begin()));
+                    intermfire=unionfire;
+                   // cout<<"taille de intermfire est : "<<intermfire.size()<<endl;
+                     //cout<<"taille de unionfire est : "<<unionfire.size()<<endl;
+                     //cout<<"taille de transitions est : "<<transitions.size()<<endl;
+                    st.push(Pair(couple(reached_class,Complete_meta_state),fire));
+                    stmf.push(Pairint(couple(reached_class,Complete_meta_state),t));
+                    
+                  //  cout<<"3333333"<<endl;
+                    bdd fin=finalstate & Complete_meta_state;
+                    /*
+		      Ancien implem de M_f/verif OP_to_Complete (avant these)
+		      if (fin !=bdd_false())
+                    {
+                        // cout<<"0000000chemin vers final aggregate: ";
+                        unionpred_Mf=fin;
+                        bdd tempo;
+                        
+                        do {
+                            tempo=unionpred_Mf ;
+                            unionpred_Mf=(StepBackward3(unionpred_Mf));
+                            
+                            
+                        }while(!(unionpred_Mf==tempo));
+                        
+                        do {
+                            Pairint pr = stmf.top();
+                            int tt=pr.second;
+                            //cout<<transitions[tt].name<<" - "<<endl;
+                            if(tt!=-1){
+                            unionpred_Mf = unionpred_Mf | relation[(tt)](unionpred_Mf);
+                            do {
+                                tempo=unionpred_Mf ;
+                                unionpred_Mf=(StepBackward3(unionpred_Mf));
+                                
+                                
+                            }while(!(unionpred_Mf==tempo));
+                            }
+                            stmf.pop();
+                            
+                        } while(!stmf.empty());
+                        cout<<endl;
+                        if(unionpred_Mf!=globalBDD)
+                        {
+                            cout<<"Option to Complete violee"<<endl;
+                            opToC=0;
+                        }
+
+                    }*/
+                    //Calcul Mf
+        if (fin !=bdd_false())
+        {
+           cout<<"0000000chemin vers final aggregate: ";
+            unionpred_Mf=fin;
+            bdd tempo;
+            
+            do {
+                tempo=unionpred_Mf ;
+                unionpred_Mf=(StepBackward3(unionpred_Mf));
+                
+                
+            }while(!(unionpred_Mf==tempo));
+            
+            do {
+                Pairint pr = stmf.top();
+                int tt=pr.second;
+                cout<<transitions[tt].name<<" - "<<endl;
+
+                //cout<<transitions[tt].name<<" - "<<endl;
+                if(tt!=-1){
+                    unionpred_Mf = unionpred_Mf | relation[(tt)](unionpred_Mf);
+                    do {
+                        tempo=unionpred_Mf ;
+                        unionpred_Mf=(StepBackward3(unionpred_Mf));
+                        
+                        
+                    }while(!(unionpred_Mf==tempo));
+                }
+                stmf.pop();
+                
+            } while(!stmf.empty());
+            cout<<endl;
+            reached_class->Mf=unionpred_Mf;
+	    // if(unionpred_Mf!=globalBDD)
+            if(c->Mf==bddfalse)
+	    {
+                cout<<"Option to Complete violee"<<endl;
+                opToC=0;
+            }
+	    //else if(!st.empty())
+	      //UpdateMf(st.top().first.first,reached_class);
+
+            
+        }
+        
+
+                    /*for(Set::const_iterator i=reached_class->Enable.begin();!(i==reached_class->Enable.end());i++)
+                        cout<<"TEST !!  "<<(*i)<<" et "<<transitions[*i].name<<endl;*/
+                    TabMeta[nbmetastate]=reached_class->class_state;
+                    nbmetastate++;
+                    old_size=bdd_anodecount(TabMeta,nbmetastate);
+                    e.first.first->Successors.insert(e.first.first->Successors.begin(),Edge(reached_class,t));
+                    reached_class->Predecessors.insert(reached_class->Predecessors.begin(),Edge(e.first.first,t));
+                    g.addArc();
+                    g.insert(reached_class);
+                    
+                    
+                    
+                }
+                else
+                {
+                    fire=firable_obs(Complete_meta_state);
+                    stmf.push(Pairint(couple(reached_class,Complete_meta_state),t));
+                    
+                    delete reached_class;
+                    e.first.first->Successors.insert(e.first.first->Successors.begin(),Edge(pos,t));
+                    pos->Predecessors.insert(pos->Predecessors.begin(),Edge(e.first.first,t));
+                    g.addArc();
+                }
+                
+                /////////////////////////**********************///////////////////////
+                /////////////////////////**********************///////////////////////
+
+                set<string>::const_iterator f;
+               // f=reached_class->lamda.find("term");
+                //if(f!=reached_class->lamda.end())
+                /*{
+                    
+                    bdd d,tempa=Complete_meta_state;
+                   // bdd unionpred;
+                    
+                    
+                    
+                    //cout << "RN "<< bddtable<< globalBDD<<endl;
+                    
+                    bdd from=StepBackward(Complete_meta_state,t);
+                    unionpred=Complete_meta_state;
+                    //cout<<"StepBackward2: "<<endl;
+                    //cout<<bddtable<<(from);
+                    bdd tmp;
+                    do
+                    {
+                        tmp=from;
+                        //                                    from=(StepBackward(d & from));
+                        from=(StepBackward(from));
+                    }while(!(from==tmp));
+                    
+                    
+                    //tempa=tempa-d;
+                    unionpred=unionpred | from ;
+                     /* cout << "unionpred "<< bddtable<< unionpred<<endl;
+                  //  cout<<"test bdd"<<bddtable<<bdd_biimp(unionpred,globalBDD)<<endl;
+                    if(globalBDD==unionpred)
+                        cout<<"YESssss"<<endl;
+                    else
+                        
+                        cout<<"NOooooo"<<endl;
+                    */
+                    
+                    
+                    
+                    // }
+                    
+                    /*   bdd from;
+                     while(tempa!=d){
+                     
+                     d=bdd_satone(tempa);
+                     //d=bdd_satoneset(tempa,bdd_support(M0),bddtrue);
+                     
+                     cout << "true assignementt "<< bddtable<< d<<endl;
+                     
+                     if(d!=bddfalse)
+                     {
+                     from=StepBackward(d);
+                     //cout<<"StepBackward2: "<<endl;
+                     //cout<<bddtable<<(from);
+                     bdd tmp;
+                     do
+                     {
+                     tmp=from;
+                     //                                    from=(StepBackward(d & from));
+                     from=(StepBackward(from));
+                     }while(!(from==tmp));
+                     
+                     
+                     tempa=tempa-d;
+                     unionpred=unionpred | from ;
+                     cout << "unionpred "<< bddtable<< unionpred<<endl;
+                     
+                     
+                     }
+                     
+                     
+                     }
+                     
+                     
+                     cout << "RN "<< bddtable<< globalBDD<<endl;
+                     if(globalBDD==unionpred)
+                     cout<<"YESssss"<<endl;
+                     else
+                     
+                     cout<<"NOooooo"<<endl;*/
+                    
+               /* }*/
+                
+                /////////////////////////**********************///////////////////////
+                /////////////////////////**********************///////////////////////
+
+            }  bool w=reached_class->blocage();
+            if(w)
+            {
+                cout<<"\n\tDEADLOCK !!!"<<endl;
+                cout<<" \n\nCOMPLETE GRAPH'S BUILDING ?(y/n)"<<endl;
+                char c;
+                cin>>c;
+                if(c=='n'||c=='N')
+                {
+                    cout<<"No"<<endl;
+                    size_t n=1;
+                    g. printCompleteInformation();
+                    
+                    //g.printGraph(g.initialstate,n);
+                    exit(0);
+                }
+                
+            }
+            
+        }
+        else {
+			//cout<<"here"<<endl;
+			st.pop();
+        nbmetastate--;
+        }//cout<<"test"<<endl;
+    } while(!st.empty());
+   
+    
+        g.OptionToComp=opToC;
+   
+    if(unionfire.size()==transitions.size()) g.nodeadTrans=true;
+    else g.nodeadTrans=false;
+    if (DeadRdp==true) {g.DeadMG=true;}
+    g.pc=pc;
+   
+    //cout<<" pc "<<pc<<endl;
+    tps=(double)(clock()-d) / (double)CLOCKS_PER_SEC;
+    // cout<<endl<<"DeadRdp "<<DeadRdp<<"  g.DeadMG"<<g.DeadMG<<endl;
+    
+    /* cout<<endl<<"-------------------------------------------"<<endl;
+     
+     if (g.DeadMG)
+     cout<<"CONC: THE GRAPH CONTAINS A DEADLOCK STATE "<<endl;
+     else    cout<<"CONC: THE GRAPH IS DEADLOCKFREE "<<endl;
+     cout<<"-------------------------------------------"<<endl;*/
+    cout<<"#TIME OF CONSTRUCTION : "<<tps<<endl;
+    cout<<" MAXIMAL INTERMEDIARY BDD SIZE \n"<<MaxIntBdd<<endl;
+    cout<<"OLD SIZE : "<<old_size<<endl;
+    //cout<<"NB SHARED NODES : "<<bdd_anodecount(TabMeta,nbmetastate)<<endl;
+    cout<<"NB META STATE DANS CONSTRUCTION : "<<nbmetastate<<endl;
+    cout<<"NB ITERATIONS CONSTRUCTION : "<<NbIt<<endl;
+    cout<<"Nb Iteration externes : "<<itext<<endl;
+    cout<<"Nb Iteration internes : "<<itint<<endl;
+    
+    
+}

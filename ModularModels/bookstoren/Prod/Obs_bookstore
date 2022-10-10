@@ -1,0 +1,2 @@
+27
+place_c_order rec_acc rec_decl rec_book rec_bill pay handle_c_order place_b_order c_accept c_reject decide req_shipement alt_shipper inform_publ send_bill handle_payement eval_b_order b_reject b_accept prepare_b send_book eval_s_req s_accept s_reject prepare_s  ship notify

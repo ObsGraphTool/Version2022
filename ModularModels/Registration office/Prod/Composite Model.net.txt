@@ -1,0 +1,133 @@
+#place p1 mk(<..>)
+#place p2
+#place p3
+#place p4
+#place p5
+#place p6
+#place p7
+#place p8 mk(<..>)
+#place p9
+#place p10
+#place p11
+#place p12
+#place p13
+#place p14
+#place p15 mk(<..>)
+#place p16
+#place p17
+#place reqPass
+#place reqID
+#place price
+#place noFingerprint
+#place fingerprint
+#place printDoc
+#place sentDoc
+
+
+#trans a
+in {p1:<..>;}
+out {p2:<..>;reqPass:<..>;}
+#endtr
+
+
+#trans b
+in {p1:<..>;}
+out {p3:<..>;reqID:<..>;}
+#endtr
+
+
+#trans c
+in {p2:<..>;price:<..>;}
+out {p4:<..>;}
+#endtr
+
+
+#trans d
+in {p3:<..>;price:<..>;}
+out {p5:<..>;}
+#endtr
+
+
+#trans e
+in {p4:<..>;}
+out {p6:<..>;noFingerprint:<..>;}
+#endtr
+
+
+#trans f
+in {p4:<..>;}
+out {p6:<..>;fingerprint:<..>;}
+#endtr
+
+
+#trans g
+in {p5:<..>;}
+out {p6:<..>;fingerprint:<..>;}
+#endtr
+
+
+#trans h
+in {p6:<..>;sentDoc:<..>;}
+out {p7:<..>;}
+#endtr
+
+
+#trans i
+in {p8:<..>;reqPass:<..>;}
+out {p9:<..>;}
+#endtr
+
+
+#trans j
+in {p8:<..>;reqID:<..>;}
+out {p10:<..>;}
+#endtr
+
+
+#trans k
+in {p9:<..>;}
+out {p11:<..>;price:<..>;}
+#endtr
+
+
+#trans l
+in {p10:<..>;}
+out {p12:<..>;price:<..>;}
+#endtr
+
+
+#trans m
+in {p11:<..>;noFingerprint:<..>;}
+out {p13:<..>;}
+#endtr
+
+
+#trans n
+in {p11:<..>;fingerprint:<..>;}
+out {p13:<..>;}
+#endtr
+
+
+#trans o
+in {p12:<..>;fingerprint:<..>;}
+out {p13:<..>;}
+#endtr
+
+
+#trans p
+in {p13:<..>;}
+out {p14:<..>;printDoc:<..>;}
+#endtr
+
+
+#trans q
+in {p15:<..>;printDoc:<..>;}
+out {p16:<..>;}
+#endtr
+
+
+#trans r
+in {p16:<..>;}
+out {p17:<..>;sentDoc:<..>;}
+#endtr
+

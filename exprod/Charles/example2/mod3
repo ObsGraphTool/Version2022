@@ -1,0 +1,5 @@
+states
+1
+2
+transitions
+(1, f2 ,2)

@@ -1,0 +1,22 @@
+#place MeansofTravel
+#place Selection
+
+#trans t10
+in {q0:<..>;MeansofTravel:<..>;}
+out {q1:<..>;}
+#endtr
+
+#trans t11
+in {q1:<..>;}
+out {q2:<..>;Selection:<..>;}
+#endtr
+
+#trans t8
+in {p1:<..>;}
+out {p3:<..>;MeansofTravel:<..>;}
+#endtr
+
+#trans t9
+in {p3:<..>;Selection:<..>;}
+out {p5:<..>;p6:<..>;}
+#endtr

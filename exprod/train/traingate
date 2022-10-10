@@ -1,0 +1,14 @@
+states
+31
+32
+33
+34
+transitions
+(31, 3atto ,31)
+(31, lower ,33)
+(32, 3attr ,32)
+(32, 3ouvrir ,31)
+(33, 3attd ,33)
+(33, 3fermer ,34)
+(34, 3attc ,34)
+(34, raise ,32)

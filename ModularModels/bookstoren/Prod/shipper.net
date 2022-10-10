@@ -1,0 +1,41 @@
+#place startS mk(<..>)
+#place p41
+#place p42
+#place p43
+#place p44
+#place endS
+
+#trans eval_s_req
+in {startS:<..>;}
+out {p41:<..>;}
+#endtr
+
+#trans t_end
+in {startS:<..>;}
+out {endS:<..>;}
+#endtr
+
+#trans s_accept
+in {p41:<..>;}
+out {p42:<..>;}
+#endtr
+
+#trans s_reject
+in {p41:<..>;}
+out {startS:<..>;}
+#endtr
+
+#trans prepare_s
+in {p42:<..>;}
+out {p43:<..>;}
+#endtr
+
+#trans ship
+in {p43:<..>;}
+out {p44:<..>;}
+#endtr
+
+#trans notify
+in {p44:<..>;}
+out {endS:<..>;}
+#endtr

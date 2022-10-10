@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model formalismUrl="http://formalisms.cosyverif.org/pt-net.fml" xmlns="http://cosyverif.org/ns/model">
+<attribute name="authors" x="0" y="0"></attribute>
+<attribute name="title" x="0" y="0"></attribute>
+<attribute name="date" x="0" y="0"></attribute>
+<attribute name="note" x="0" y="0">Designed with Coloane</attribute>
+<attribute name="version" x="0" y="0">0,0</attribute>
+
+<node id="0" nodeType="place" x="536" y="83">
+<attribute name="name" x="556" y="78">i1</attribute>
+<attribute name="marking" x="556" y="93">1</attribute>
+</node>
+
+<node id="1" nodeType="place" x="536" y="83">
+<attribute name="name" x="556" y="78">i2</attribute>
+<attribute name="marking" x="556" y="93">0</attribute>
+</node>
+
+<node id="2" nodeType="place" x="536" y="83">
+<attribute name="name" x="556" y="78">i3</attribute>
+<attribute name="marking" x="556" y="93">0</attribute>
+</node>
+
+<node id="3" nodeType="transition" x="535" y="217">
+<attribute name="name" x="555" y="212">t2</attribute>
+<attribute name="observed" x="555" y="212">1</attribute>
+</node>
+<node id="4" nodeType="transition" x="535" y="217">
+<attribute name="name" x="555" y="212">t1</attribute>
+<attribute name="observed" x="555" y="212">1</attribute>
+</node>
+
+
+<arc id= "5" source="0" target="3" arcType="arc">
+<attribute name="valuation" x="426" y="253">1</attribute>
+</arc>
+<arc id="6" source="3" target="1" arcType="arc">
+<attribute name="valuation" x="456" y="253">1</attribute>
+</arc>
+<arc id= "7" source="0" target="4" arcType="arc">
+<attribute name="valuation" x="426" y="253">1</attribute>
+</arc>
+<attribute name="FinalMarking" x="0" y="0">1*1</attribute>
+
+</model>

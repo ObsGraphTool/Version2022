@@ -1,0 +1,15 @@
+#place q0 mk(<..>)
+#place q1
+#place q2
+
+
+#trans t10
+in {q0:<..>;}
+out {q1:<..>;}
+#endtr
+
+#trans t11
+in {q1:<..>;}
+out {q2:<..>;}
+#endtr
+

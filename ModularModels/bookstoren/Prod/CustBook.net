@@ -1,0 +1,46 @@
+#place c_order
+#place c_confirm
+#place c_decline
+#place bill
+#place payement
+
+#trans place_c_order
+out {c_order:<..>;}
+#endtr
+
+#trans rec_acc 
+in {c_confirm:<..>;}
+#endtr
+
+#trans rec_decl
+in {c_decline:<..>;}
+#endtr
+
+
+#trans rec_bill
+in {bill:<..>;}
+#endtr
+
+#trans pay
+out {payement:<..>;}
+#endtr
+
+#trans handle_c_order
+in {c_order:<..>;}
+#endtr
+
+#trans c_accept
+out {c_confirm:<..>;}
+#endtr
+
+#trans c_reject
+out {c_decline:<..>;}
+#endtr
+
+#trans send_bill
+out {bill:<..>;}
+#endtr
+
+#trans handle_payement
+in {payement:<..>;}
+#endtr

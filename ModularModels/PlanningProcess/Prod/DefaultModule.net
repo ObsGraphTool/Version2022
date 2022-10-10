@@ -1,0 +1,15 @@
+#place s0 mk(<..>)
+#place s1
+#place s2
+
+#trans t3
+in {s0:<..>;}
+out {s1:<..>;}
+#endtr
+
+
+#trans t12
+in {s1:<..>;}
+out {s2:<..>;}
+#endtr
+

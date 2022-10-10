@@ -1,0 +1,8 @@
+states
+1
+2
+3
+transitions
+(1, f1 ,2)
+(2, tA ,3)
+(3, f3 ,2)

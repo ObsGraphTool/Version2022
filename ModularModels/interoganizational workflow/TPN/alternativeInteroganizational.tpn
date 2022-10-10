@@ -1,0 +1,146 @@
+place "start_C" init 1;
+place "p11";
+place "p12";
+place "p13";
+place "p14";
+place "end_C";
+place "star_P" init 1;
+place "p21";
+place "p22";
+place "p23";
+place "p24";
+place "p25";
+place "p26";
+place "p27";
+place "p28";
+place "p29";
+place "p210";
+place "end_P";
+place "start_S1" init 1;
+place "p31";
+place "p32";
+place "p33";
+place "p34";
+place "end_S1";
+place "start_S2" init 1;
+place "p41";
+place "p42";
+place "p43";
+place "p44";
+place "end_S2";
+place "order_a";
+place "notification";
+place "delivery_a";
+place "invoice";
+place "payement";
+place "order_b ";
+place "delivery_b";
+place "order_c";
+place "delivery_c";
+
+trans "send_order_a"
+    in "start_C"
+    out "p11" "order_a"
+;
+
+trans "receive_notification "
+    in "p11" "notification"
+    out "p12"
+;
+trans "receive_del_a"
+    in "p12" "delivery_a"
+    out "p13"
+;
+trans "receive_invoice"
+    in "p13" "invoice"
+    out "p14"
+;
+trans "pay"
+    in "p14"
+    out "payement" "end_C"
+;
+trans "receive_order_a"
+    in "start_P" "order_a"
+    out "p21" "p22"
+;
+trans "send_order_b"
+    in "p21"
+    out "p13" "order_b"
+;
+trans "send_order_c"
+    in "p22"
+    out "p24" "order_c"
+;
+trans "notify "
+    in "p23" "p24"
+    out "p25" "notification"
+;
+trans "receive_del_b"
+    in "p25" "delivery_b"
+    out "p26"
+;
+trans "receive_del_c"
+    in "p26" "delivery_c"
+    out "p28" "p27"
+;
+trans "send_del_a"
+    in "p27"
+    out "p29" "delivery_a"
+;
+trans "send_invoice"
+    in "p28"
+    out "p210" "invoice"
+;
+trans "receive_payement"
+    in "p29" "p210" "payement"
+    out "end_P"
+;
+trans "receive_order_b"
+    in "start_S1" "order_b"
+    out "p31"
+;
+trans "produce_b"
+    in "p31"
+    out "p32"
+;
+trans "NOK_b"
+    in "p32" "p33"
+    out "p31"
+;
+trans "check_b "
+    in "p32"
+    out "p33"
+;
+trans "OK_b"
+    in "p33"
+    out "p34"
+;
+trans "send_del_b"
+    in "p34"
+    out "end_S1" "delivery_b"
+;
+trans "receive_order_c"
+    in "start_S2" "order_c"
+    out "p41"
+;
+trans "produce_c"
+    in "p41"
+    out "p42"
+;
+
+trans "NOK_c"
+    in "p43"
+    out "end_S2"
+;
+trans "check_c"
+    in "p42: 1,  
+PRODUCE
+  p43"
+;
+trans "OK_c"
+    in "p43"
+    out "p44"
+;
+trans "send_del_c"
+    in "p44"
+    out "end_S2" "delivery_c: 1;

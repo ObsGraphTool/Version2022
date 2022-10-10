@@ -1,0 +1,6 @@
+states
+31
+32
+transitions
+(31, t ,32)
+(32, u ,31)

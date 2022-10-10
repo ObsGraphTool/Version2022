@@ -1,0 +1,252 @@
+reading alphabet from file sync...
+reading automaton from file mod1...
+reading automaton from file mod2...
+reading automaton from file mod3...
+
+1/ print the number of nodes and arcs in each component
+2/ print the nodes and arcs of each component
+3/ draw each component
+4/ check reachability of a node
+5/ find all reachable deadlocks
+6/ find all reachable local deadlocks
+7/ perform backward reachability
+8/ exit the program
+
+Local deadlocks of automaton mod1
+Look at scc 1
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+4: 
+3: 
+automaton mod2 SGscc auto mod2
+marktermsucc auto mod2 SCC 1
+automaton mod3 SGscc auto mod3
+marktermsucc auto mod3 SCC 1
+checkCondition auto mod1
+add marking auto mod1 state 1
+checkCondition auto mod2
+add marking auto mod2 state 1
+checkCondition auto mod3
+add marking auto mod3 state 1
+checkCondition end
+issccof: auto mod1 scc 1 -- node of auto mod1 scc 1
+issccof: auto mod1 scc 1 -- node of auto mod1 scc 1
+issccof: auto mod2 scc 1 -- node of auto mod2 scc 1
+01
+02
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+Look at scc 2
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+4: 
+3: 
+automaton mod2 SGscc auto mod2
+marktermsucc auto mod2 SCC 2
+automaton mod3 SGscc auto mod3
+marktermsucc auto mod3 SCC 1
+checkCondition auto mod1
+add marking auto mod1 state 2
+checkCondition auto mod2
+add marking auto mod2 state 2
+checkCondition auto mod3
+add marking auto mod3 state 1
+checkCondition end
+issccof: auto mod2 scc 2 -- node of auto mod2 scc 2
+issccof: auto mod2 scc 2 -- node of auto mod2 scc 2
+issccof: auto mod3 scc 1 -- node of auto mod3 scc 1
+01
+02
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+4: 
+3: 
+automaton mod2 SGscc auto mod2
+marktermsucc auto mod2 SCC 3
+automaton mod3 SGscc auto mod3
+marktermsucc auto mod3 SCC 2
+checkCondition auto mod1
+add marking auto mod1 state 2
+checkCondition auto mod2
+add marking auto mod2 state 3
+checkCondition auto mod3
+add marking auto mod3 state 2
+checkCondition end
+issccof: auto mod1 scc 2 -- node of auto mod1 scc 2
+issccof: auto mod1 scc 2 -- node of auto mod1 scc 2
+issccof: auto mod2 scc 3 -- node of auto mod2 scc 3
+01
+02
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+Look at scc 3
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+4: 
+1: add 3 to list
+3 
+Local deadlocks of automaton mod2
+Look at scc 1
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+4: 
+3: 
+automaton mod1 SGscc auto mod1
+marktermsucc auto mod1 SCC 1
+automaton mod3 SGscc auto mod3
+marktermsucc auto mod3 SCC 1
+checkCondition auto mod1
+add marking auto mod1 state 1
+checkCondition auto mod2
+add marking auto mod2 state 1
+checkCondition auto mod3
+add marking auto mod3 state 1
+checkCondition end
+issccof: auto mod1 scc 1 -- node of auto mod1 scc 1
+issccof: auto mod1 scc 1 -- node of auto mod1 scc 1
+issccof: auto mod2 scc 1 -- node of auto mod2 scc 1
+01
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+Look at scc 2
+Look at scc 3
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+4: 
+3: 
+automaton mod1 SGscc auto mod1
+marktermsucc auto mod1 SCC 2
+automaton mod3 SGscc auto mod3
+marktermsucc auto mod3 SCC 2
+checkCondition auto mod1
+add marking auto mod1 state 2
+checkCondition auto mod2
+add marking auto mod2 state 3
+checkCondition auto mod3
+add marking auto mod3 state 2
+checkCondition end
+issccof: auto mod1 scc 2 -- node of auto mod1 scc 2
+issccof: auto mod1 scc 2 -- node of auto mod1 scc 2
+issccof: auto mod2 scc 3 -- node of auto mod2 scc 3
+01
+02
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+Look at scc 4
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+4: 
+1: add 4 to list
+4 
+Local deadlocks of automaton mod3
+Look at scc 1
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+4: 
+3: 
+automaton mod1 SGscc auto mod1
+marktermsucc auto mod1 SCC 1
+automaton mod2 SGscc auto mod2
+marktermsucc auto mod2 SCC 1
+checkCondition auto mod1
+add marking auto mod1 state 1
+checkCondition auto mod2
+add marking auto mod2 state 1
+checkCondition auto mod3
+add marking auto mod3 state 1
+checkCondition end
+issccof: auto mod1 scc 1 -- node of auto mod1 scc 1
+issccof: auto mod1 scc 1 -- node of auto mod1 scc 1
+issccof: auto mod2 scc 1 -- node of auto mod2 scc 1
+01
+02
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+4: 
+3: 
+automaton mod1 SGscc auto mod1
+marktermsucc auto mod1 SCC 2
+automaton mod2 SGscc auto mod2
+marktermsucc auto mod2 SCC 2
+checkCondition auto mod1
+add marking auto mod1 state 2
+checkCondition auto mod2
+add marking auto mod2 state 2
+checkCondition auto mod3
+add marking auto mod3 state 1
+checkCondition end
+issccof: auto mod2 scc 2 -- node of auto mod2 scc 2
+issccof: auto mod2 scc 2 -- node of auto mod2 scc 2
+issccof: auto mod3 scc 1 -- node of auto mod3 scc 1
+01
+02
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+Look at scc 2
+Look at SGnode
+	SCCs of nodes: 1, 1, 1,
+Look at SGnode
+	SCCs of nodes: 2, 2, 1,
+Look at SGnode
+	SCCs of nodes: 2, 3, 2,
+4: 
+3: 
+automaton mod1 SGscc auto mod1
+marktermsucc auto mod1 SCC 2
+automaton mod2 SGscc auto mod2
+marktermsucc auto mod2 SCC 3
+checkCondition auto mod1
+add marking auto mod1 state 2
+checkCondition auto mod2
+add marking auto mod2 state 3
+checkCondition auto mod3
+add marking auto mod3 state 2
+checkCondition end
+issccof: auto mod1 scc 2 -- node of auto mod1 scc 2
+issccof: auto mod1 scc 2 -- node of auto mod1 scc 2
+issccof: auto mod2 scc 3 -- node of auto mod2 scc 3
+01
+02
+Look at SGnode
+	SCCs of nodes: 3, 4, 2,
+4: 
+1: add 2 to list
+2 
+
+1/ print the number of nodes and arcs in each component
+2/ print the nodes and arcs of each component
+3/ draw each component
+4/ check reachability of a node
+5/ find all reachable deadlocks
+6/ find all reachable local deadlocks
+7/ perform backward reachability
+8/ exit the program
+

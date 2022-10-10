@@ -1,0 +1,70 @@
+#place startB mk(<..>)
+#place p21
+#place p23
+#place p24
+#place p25
+#place p26
+#place p27
+#place p28
+#place p29
+#place endB
+
+
+
+
+#trans handle_c_order
+in {startB:<..>;}
+out {p21:<..>;}
+#endtr
+
+#trans alt_publ
+in {p24:<..>;}
+out {p21:<..>;}
+#endtr
+
+#trans place_b_order
+in {p21:<..>;}
+out {p23:<..>;}
+#endtr
+
+#trans c_accept
+in {p23:<..>;}
+out {p25:<..>;}
+#endtr
+
+#trans c_reject
+in {p24:<..>;}
+out {endB:<..>;}
+#endtr
+
+#trans decide
+in {p23:<..>;}
+out {p24:<..>;}
+#endtr
+
+#trans req_shipement
+in {p25:<..>;}
+out {p26:<..>;}
+#endtr
+
+#trans alt_shipper
+in {p26:<..>;}
+out {p25:<..>;}
+#endtr
+
+#trans inform_publ
+in {p26:<..>;}
+out {p27:<..>;}
+#endtr
+
+#trans send_bill
+in {p27:<..>;}
+out {p28:<..>;}
+#endtr
+
+#trans handle_payement
+in {p28:<..>;}
+out {endB:<..>;}
+#endtr
+
+

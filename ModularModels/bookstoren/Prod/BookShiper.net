@@ -1,0 +1,46 @@
+#place s_request
+#place s_decline
+#place s_confirm
+#place notification
+#place b3
+
+
+#trans c_reject 
+out {b3:<..>;}
+#endtr
+#trans t_end 
+in {b3:<..>;}
+#endtr
+
+
+#trans req_shipement
+out {s_request:<..>;}
+#endtr
+
+#trans alt_shipper
+in {s_decline:<..>;}
+#endtr
+
+#trans inform_publ
+in {s_confirm:<..>;}
+#endtr
+
+#trans send_bill
+in {notification:<..>;}
+#endtr
+
+#trans eval_s_req
+in {s_request:<..>;}
+#endtr
+
+#trans s_accept
+out {s_confirm:<..>;}
+#endtr
+
+#trans s_reject
+out {s_decline:<..>;}
+#endtr
+
+#trans notify
+out {notification:<..>;}
+#endtr

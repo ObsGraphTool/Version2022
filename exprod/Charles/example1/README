@@ -1,0 +1,4 @@
+Small example with self loop in second module, trying to hide local deadlock in 
+first.
+
+Should only have a deadlock in module 1 at state 2.

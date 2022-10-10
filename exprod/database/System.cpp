@@ -1,0 +1,4 @@
+states
+passive
+active
+transitions

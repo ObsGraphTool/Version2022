@@ -1,0 +1,36 @@
+#place bOrder
+#place bSpec
+#place bCost
+#place bShip
+
+#trans order1
+out {bOrder:<..>;}
+#endtr
+
+#trans spec1
+out {bSpec:<..>;}
+#endtr
+
+#trans ship1
+in {bShip:<..>;}
+#endtr
+
+#trans cost1
+in {bCost:<..>;}
+#endtr
+
+#trans order2
+in {bOrder:<..>;}
+#endtr
+
+#trans spec2
+in {bSpec:<..>;}
+#endtr
+
+#trans ship2
+out {bShip:<..>;}
+#endtr
+
+#trans cost2
+out {bCost:<..>;}
+#endtr

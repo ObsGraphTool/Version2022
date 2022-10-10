@@ -1,0 +1,39 @@
+#place startC mk(<..>)
+#place p11
+#place p12
+#place p13
+#place p14
+#place p15
+#place endC
+
+
+
+#trans place_c_order
+in {startC:<..>;}
+out {p11:<..>;}
+#endtr
+
+#trans rec_acc 
+in {p11:<..>;}
+out {p12:<..>;p13:<..>;}
+#endtr
+
+#trans rec_decl
+in {p11:<..>;}
+out {endC:<..>;}
+#endtr
+
+#trans rec_book
+in {p13:<..>;}
+out {p15:<..>;}
+#endtr
+
+#trans rec_bill
+in {p12:<..>;}
+out {p14:<..>;}
+#endtr
+
+#trans pay
+in {p15:<..>;p14:<..>;}
+out {endC:<..>;}
+#endtr

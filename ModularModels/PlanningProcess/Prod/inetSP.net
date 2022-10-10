@@ -1,0 +1,26 @@
+#place Itinerary
+#place RoutePlanning
+
+#trans t3
+in {s0:<..>;}
+out {Itinerary:<..>;s1:<..>;}
+#endtr
+
+
+#trans t12
+in {s1:<..>;RoutePlanning:<..>;}
+out {s2:<..>;}
+#endtr
+
+
+
+#trans t2
+in {p0:<..>;Itinerary:<..>;}
+out {p2:<..>;p1:<..>;}
+#endtr
+
+#trans t7
+in {p7:<..>;p6:<..>;}
+out {p8:<..>;RoutePlanning:<..>;}
+#endtr
+

@@ -1,0 +1,5 @@
+Small example with self loops in first and second module to avoid deadlock, but
+requiring synchronisation.  Also, non-deterministic choice which could produce
+deadlock in modules 1 and 2.
+
+Should have local deadlocks 1 (mod1), 4 (mod2), 2 (mod3).

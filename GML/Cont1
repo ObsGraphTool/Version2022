@@ -1,0 +1,109 @@
+<node id="1" nodeType="place">
+    <attribute name="name">i1</attribute>
+    <attribute name="marking">1</attribute>
+  </node>
+  <node id="2" nodeType="place">
+    <attribute name="name">p11</attribute>
+  </node>
+ <node id="3" nodeType="place">
+    <attribute name="name">p12</attribute>
+  </node> 
+ <node id="4" nodeType="place">
+    <attribute name="name">p13</attribute>
+  </node> 
+ <node id="5" nodeType="place">
+    <attribute name="name">p14</attribute>
+  </node> 
+ <node id="6" nodeType="place">
+    <attribute name="name">p15</attribute>
+  </node> 
+ <node id="7" nodeType="place">
+    <attribute name="name">p16</attribute>
+  </node> 
+ <node id="8" nodeType="place">
+    <attribute name="name">p17</attribute>
+  </node> 
+ <node id="9" nodeType="place">
+    <attribute name="name">p18</attribute>
+  </node>
+<node id="10" nodeType="place">
+    <attribute name="name">p19</attribute>
+  </node>
+<node id="11" nodeType="place">
+    <attribute name="name">p110</attribute>
+  </node>
+<node id="12" nodeType="place">
+    <attribute name="name">p111</attribute>
+  </node>
+<node id="13" nodeType="place">
+    <attribute name="name">cs</attribute>
+  </node>
+<node id="14" nodeType="place">
+    <attribute name="name">o1</attribute>
+  </node>
+
+  <node id="15" nodeType="transition">
+    <attribute name="name">order</attribute>
+  </node>
+<node id="16" nodeType="transition">
+    <attribute name="name">collect_input</attribute>
+  </node>
+<node id="17" nodeType="transition">
+    <attribute name="name">spec</attribute>
+  </node>
+<node id="18" nodeType="transition">
+    <attribute name="name">ship</attribute>
+  </node>
+<node id="19" nodeType="transition">
+    <attribute name="name">prep_cs</attribute>
+  </node>
+<node id="20" nodeType="transition">
+    <attribute name="name">cost</attribute>
+  </node>
+<node id="21" nodeType="transition">
+    <attribute name="name">bill</attribute>
+  </node>
+<node id="22" nodeType="transition">
+    <attribute name="name">nok</attribute>
+  </node>
+<node id="23" nodeType="transition">
+    <attribute name="name">ok</attribute>
+  </node>
+<node id="24" nodeType="transition">
+    <attribute name="name">check</attribute>
+  </node>
+<node id="25" nodeType="transition">
+    <attribute name="name">prepph</attribute>
+  </node>
+
+
+  <arc id="26" arcType="arc" source="1" target="15"/>
+  <arc id="27" arcType="arc" source="15" target="2"/>
+  <arc id="28" arcType="arc" source="15" target="4"/>
+  <arc id="29" arcType="arc" source="15" target="7"/> 
+  <arc id="30" arcType="arc" source="2" target="16"/>
+  <arc id="31" arcType="arc" source="16" target="2"/> 
+  <arc id="32" arcType="arc" source="2" target="17"/>
+  <arc id="33" arcType="arc" source="13" target="17"/>
+  <arc id="34" arcType="arc" source="17" target="3"/>
+  <arc id="35" arcType="arc" source="3" target="18"/>
+  <arc id="36" arcType="arc" source="6" target="18"/>
+  <arc id="37" arcType="arc" source="12" target="18"/>
+  <arc id="38" arcType="arc" source="11" target="18"/>
+  <arc id="39" arcType="arc" source="18" target="14"/>
+  <arc id="40" arcType="arc" source="4" target="19"/>
+  <arc id="41" arcType="arc" source="19" target="5"/>
+  <arc id="42" arcType="arc" source="5" target="20"/>
+  <arc id="43" arcType="arc" source="20" target="6"/>
+  <arc id="44" arcType="arc" source="20" target="13"/>
+  <arc id="45" arcType="arc" source="7" target="21"/>
+  <arc id="46" arcType="arc" source="21" target="8"/>
+  <arc id="47" arcType="arc" source="8" target="22"/>
+  <arc id="48" arcType="arc" source="22" target="7"/>
+  <arc id="49" arcType="arc" source="8" target="23"/>
+  <arc id="50" arcType="arc" source="23" target="9"/>
+  <arc id="51" arcType="arc" source="23" target="10"/>
+  <arc id="52" arcType="arc" source="10" target="24"/>
+  <arc id="53" arcType="arc" source="24" target="12"/>
+  <arc id="54" arcType="arc" source="9" target="25"/>
+  <arc id="55" arcType="arc" source="25" target="11"/>

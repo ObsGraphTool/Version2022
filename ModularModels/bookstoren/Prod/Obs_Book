@@ -1,0 +1,2 @@
+10
+handle_c_order place_b_order c_accept c_reject decide req_shipement alt_shipper inform_publ send_bill handle_payement 

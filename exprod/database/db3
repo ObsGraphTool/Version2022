@@ -1,0 +1,15 @@
+states
+13
+23
+33
+43
+53
+transitions
+(13, sendmess(3) ,23)
+(23, recvack(3) ,13)
+(43, recvmess(3) ,33)
+(33, sendack(3) ,53)
+(13, sendmess(1) ,43)
+(53, recvack(1) ,13)
+(13, sendmess(2) ,43)
+(53, recvack(2) ,13)

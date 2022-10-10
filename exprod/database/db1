@@ -1,0 +1,15 @@
+states
+11
+21
+31
+41
+51
+transitions
+(11, sendmess(1) ,21)
+(21, recvack(1) ,11)
+(41, recvmess(1) ,31)
+(31, sendack(1) ,51)
+(11, sendmess(2) ,41)
+(51, recvack(2) ,11)
+(11, sendmess(3) ,41)
+(51, recvack(3) ,11)

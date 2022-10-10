@@ -1,0 +1,15 @@
+states
+12
+22
+32
+42
+52
+transitions
+(12, sendmess(2) ,22)
+(22, recvack(2) ,12)
+(42, recvmess(2) ,32)
+(32, sendack(2) ,52)
+(12, sendmess(1) ,42)
+(52, recvack(1) ,12)
+(12, sendmess(3) ,42)
+(52, recvack(3) ,12)

@@ -1,0 +1,4 @@
+Small example with self loops in first and second module to avoid deadlock, but
+requiring synchronisation.  
+
+Should only have local deadlock at state 2 (mod3).

@@ -1,0 +1,10 @@
+states
+2
+1
+transitions
+(2, sendmess(1) ,1)
+(1, recvack(1) ,2)
+(2, sendmess(2) ,1)
+(1, recvack(2) ,2)
+(2, sendmess(3) ,1)
+(1, recvack(3) ,2)

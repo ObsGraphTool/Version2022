@@ -1,0 +1,86 @@
+#place Init  mk(<..>)
+#place p0
+#place s0
+#place q0
+#place p1
+#place p2
+#place p3
+#place p4
+#place p5
+#place p6
+#place p7
+#place p8
+#place q1
+#place q2
+#place s1
+#place s2
+#place Final
+#place Itinerary
+#place MeansofTravel
+#place Selection
+#place RoutePlanning
+
+#trans t1
+in {Init:<..>;}
+out {p0:<..>;s0:<..>;q0:<..>;}
+#endtr
+
+#trans t2
+in {p0:<..>;Itinerary:<..>;}
+out {p2:<..>;p1:<..>;}
+#endtr
+
+#trans t3
+in {s0:<..>;}
+out {Itinerary:<..>;s1:<..>;}
+#endtr
+
+#trans t4
+in {p2:<..>;}
+out {p4:<..>;}
+#endtr
+
+#trans t5
+in {p7:<..>;}
+out {p2:<..>;p5:<..>;}
+#endtr
+
+#trans t6
+in {p4:<..>;p5:<..>;}
+out {p7:<..>;}
+#endtr
+
+#trans t7
+in {p7:<..>;p6:<..>;}
+out {p8:<..>;RoutePlanning:<..>;}
+#endtr
+
+#trans t8
+in {p1:<..>;}
+out {p3:<..>;MeansofTravel:<..>;}
+#endtr
+
+#trans t9
+in {p3:<..>;Selection:<..>;}
+out {p5:<..>;p6:<..>;}
+#endtr
+
+#trans t10
+in {q0:<..>;MeansofTravel:<..>;}
+out {q1:<..>;}
+#endtr
+
+#trans t11
+in {q1:<..>;}
+out {q2:<..>;Selection:<..>;}
+#endtr
+
+#trans t12
+in {s1:<..>;RoutePlanning:<..>;}
+out {s2:<..>;}
+#endtr
+
+#trans t13
+in {s2:<..>;q2:<..>;p8:<..>;}
+out {Final:<..>;}
+#endtr

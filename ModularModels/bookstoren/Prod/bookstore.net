@@ -1,0 +1,204 @@
+#place startC mk(<..>)
+#place p11
+#place p12
+#place p13
+#place p14
+#place p15
+#place endC
+
+
+#place startB mk(<..>)
+#place p21
+#place p23
+#place p24
+#place p25
+#place p26
+#place p27
+#place p28
+#place p29
+#place endB
+
+#place startP mk(<..>)
+#place p31
+#place p32
+#place p33
+#place endP
+
+#place startS mk(<..>)
+#place p41
+#place p42
+#place p43
+#place p44
+#place endS
+
+#place c_order
+#place c_confirm
+#place c_decline
+#place book_to_c
+#place bill
+#place payement
+
+
+#place b_order 
+#place b_decline
+#place b_confirm
+#place ship_info
+
+#place s_request
+#place s_decline
+#place s_confirm
+#place book_to_s
+#place notification
+
+#trans place_c_order
+in {startC:<..>;}
+out {c_order:<..>;p11:<..>;}
+#endtr
+
+#trans rec_acc 
+in {p11:<..>; c_confirm:<..>;}
+out {p12:<..>;p13:<..>;}
+#endtr
+
+#trans rec_decl
+in {p11:<..>;c_decline:<..>;}
+out {endC:<..>;}
+#endtr
+
+#trans rec_book
+in {p13:<..>;book_to_c:<..>;}
+out {p15:<..>;}
+#endtr
+
+#trans rec_bill
+in {p12:<..>;bill:<..>;}
+out {p14:<..>;}
+#endtr
+
+#trans pay
+in {p15:<..>;p14:<..>;}
+out {payement:<..>;endC:<..>;}
+#endtr
+
+
+
+
+
+
+#trans handle_c_order
+in {startB:<..>;c_order:<..>;}
+out {p21:<..>;}
+#endtr
+
+#trans alt_publ
+in {p24:<..>;}
+out {p21:<..>;}
+#endtr
+
+#trans place_b_order
+in {p21:<..>;}
+out {b_order:<..>;p23:<..>;}
+#endtr
+
+#trans c_accept
+in {p23:<..>;b_confirm:<..>;}
+out {p25:<..>;c_confirm:<..>;}
+#endtr
+
+#trans c_reject
+in {p24:<..>;}
+out {c_decline:<..>;endB:<..>;}
+#endtr
+
+#trans decide
+in {p23:<..>;b_decline:<..>;}
+out {p24:<..>;}
+#endtr
+
+#trans req_shipement
+in {p25:<..>;}
+out {p26:<..>;s_request:<..>;}
+#endtr
+
+#trans alt_shipper
+in {p26:<..>;s_decline:<..>;}
+out {p25:<..>;}
+#endtr
+
+#trans inform_publ
+in {p26:<..>;s_confirm:<..>;}
+out {p27:<..>;ship_info:<..>;}
+#endtr
+
+#trans send_bill
+in {p27:<..>;notification:<..>;}
+out {bill:<..>;p28:<..>;}
+#endtr
+
+#trans handle_payement
+in {p28:<..>;payement:<..>;}
+out {endB:<..>;}
+#endtr
+
+
+
+
+
+#trans eval_b_order 
+in {startP:<..>;b_order:<..>;}
+out {p31:<..>;}
+#endtr
+
+#trans b_reject
+in {p31:<..>;}
+out {b_decline:<..>;endP:<..>;}
+#endtr
+
+#trans b_accept
+in {p31:<..>;}
+out {p32:<..>;b_confirm:<..>;}
+#endtr
+
+#trans prepare_b
+in {p32:<..>;ship_info:<..>;}
+out {p33:<..>;}
+#endtr
+
+#trans send_book
+in {p33:<..>;}
+out {book_to_s:<..>;endP:<..>;}
+#endtr
+
+
+
+
+
+#trans eval_s_req
+in {s_request:<..>;startS:<..>;}
+out {p41:<..>;}
+#endtr
+
+#trans s_accept
+in {p41:<..>;}
+out {p42:<..>;s_confirm:<..>;}
+#endtr
+
+#trans s_reject
+in {p41:<..>;}
+out {s_decline:<..>;}
+#endtr
+
+#trans prepare_s
+in {p42:<..>;book_to_s:<..>;}
+out {p43:<..>;}
+#endtr
+
+#trans ship
+in {p43:<..>;}
+out {p44:<..>;book_to_c:<..>;}
+#endtr
+
+#trans notify
+in {p44:<..>;}
+out {notification:<..>;endS:<..>;}
+#endtr

@@ -1,0 +1,6 @@
+states
+5
+6
+transitions
+(5, t53 ,6)
+(6, t49 ,5)

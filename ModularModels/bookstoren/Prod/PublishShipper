@@ -1,0 +1,11 @@
+#place book_to_s
+
+
+
+#trans prepare_s
+in {book_to_s:<..>;}
+#endtr
+
+#trans send_book
+out {book_to_s:<..>;}
+#endtr

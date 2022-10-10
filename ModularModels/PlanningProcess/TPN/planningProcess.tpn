@@ -1,0 +1,104 @@
+place Initi init 1;
+place p0;
+place s0;
+place q0;
+place p1;
+place p2;
+place p3;
+place p4;
+place p5;
+place p6;
+place p7;
+place p8;
+place q1;
+place q2;
+place s1;
+place s2;
+place Final;
+place Itinerary;
+place MeansofTravel;
+place Selection;
+place RoutePlanning;
+
+trans "send_order_a"
+    in "start_C"
+    out "p11" "order_a"
+;
+
+
+trans "t1"
+    in "Initi"
+    out "p0" "s0" "q0"
+;
+
+
+trans "t2"
+    in "p0" "Itinerary"
+    out "p2" "p1"
+;
+
+
+trans "t3"
+    in "s0"
+    out "Itinerary" "s1"
+;
+
+
+trans "t4"
+    in "p2"
+    out "p4"
+;
+
+
+trans "t5"
+    in "p7"
+    out "p2" "p5"
+;
+
+
+trans "t6"
+    in "p4" "p5"
+    out "p7"
+;
+
+
+trans "t7"
+    in "p7" "p6"
+    out "p8" "RoutePlanning"
+;
+
+
+trans "t8"
+    in "p1"
+    out "p3" "MeansofTravel"
+;
+
+
+trans "t9"
+    in "p3" "Selection"
+    out "p5" "p6"
+;
+
+
+trans "t10"
+    in "q0" "MeansofTravel"
+    out "q1"
+;
+
+
+trans "t11"
+    in "q1"
+    out "q2" "Selection"
+;
+
+
+trans "t12"
+    in "s1" "RoutePlanning"
+    out "s2"
+;
+
+
+trans "t13"
+    in "s2" "q2" "p8"
+    out "Final"
+;

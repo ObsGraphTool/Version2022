@@ -1,0 +1,54 @@
+#place b_order 
+#place b_decline
+#place b_confirm
+#place ship_info
+#place b2
+
+
+#trans place_b_order
+out {b_order:<..>;}
+#endtr
+
+#trans c_accept
+in {b_confirm:<..>;}
+#endtr
+
+
+
+#trans decide
+in {b_decline:<..>;}
+#endtr
+
+#trans inform_publ
+out {ship_info:<..>;}
+#endtr
+
+#trans eval_b_order 
+in {b_order:<..>;}
+#endtr
+
+#trans t1 
+in {b_order:<..>;}
+out {b_order:<..>;}
+#endtr
+
+
+#trans t2 
+in {b2:<..>;}
+#endtr
+
+#trans c_reject 
+out {b2:<..>;}
+#endtr
+
+#trans b_reject
+out {b_decline:<..>;}
+#endtr
+
+#trans b_accept
+out {b_confirm:<..>;}
+#endtr
+
+#trans prepare_b
+in {ship_info:<..>;}
+#endtr

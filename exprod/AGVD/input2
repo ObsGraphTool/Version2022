@@ -1,0 +1,6 @@
+states
+4
+3
+transitions
+(3, t17 ,4)
+(4, t16 ,3)

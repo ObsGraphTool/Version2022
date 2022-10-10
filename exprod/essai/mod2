@@ -1,0 +1,5 @@
+states
+21
+22
+transitions
+(21, tsync ,22)

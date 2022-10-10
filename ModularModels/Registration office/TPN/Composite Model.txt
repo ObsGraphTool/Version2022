@@ -1,0 +1,97 @@
+place "p1" init 1;
+place "p2";
+place "p3";
+place "p4";
+place "p5";
+place "p6";
+place "p7";
+place "p8" init 1;
+place "p9";
+place "p10";
+place "p11";
+place "p12";
+place "p13";
+place "p14";
+place "p15" init 1;
+place "p16";
+place "p17";
+place "reqPass";
+place "reqID";
+place "price";
+place "noFingerprint";
+place "fingerprint";
+place "printDoc";
+place "sentDoc";
+
+trans "a"
+    in "p1"
+    out "p2" "reqPass"
+;
+trans "b"
+    in "p1"
+    out "p3" "reqID"
+;
+trans "c"
+    in "p2" "price"
+    out "p4"
+;
+trans "d"
+    in "p3" "price"
+    out "p5"
+;
+trans "e"
+    in "p4"
+    out "p6" "noFingerprint"
+;
+trans "f"
+    in "p4"
+    out "p6" "fingerprint"
+;
+trans "g"
+    in "p5"
+    out "p6" "fingerprint"
+;
+trans "h"
+    in "p6" "sentDoc"
+    out "p7"
+;
+trans "i"
+    in "p8" "reqPass"
+    out "p9"
+;
+trans "j"
+    in "p8" "reqID"
+    out "p10"
+;
+trans "k"
+    in "p9"
+    out "p11" "price"
+;
+trans "l"
+    in "p10"
+    out "p12" "price"
+;
+trans "m"
+    in "p11" "noFingerprint"
+    out "p13"
+;
+trans "n"
+    in "p11" "fingerprint"
+    out "p13"
+;
+trans "o"
+    in "p12" "fingerprint"
+    out "p13"
+;
+trans "p"
+    in "p13"
+    out "p14" "printDoc"
+;
+trans "q"
+    in "p15" "printDoc"
+    out "p16"
+;
+trans "r"
+    in "p16"
+    out "p17" "sentDoc"
+;

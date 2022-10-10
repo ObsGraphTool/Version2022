@@ -1,0 +1,42 @@
+#place startP mk(<..>)
+#place p31
+#place p32
+#place p33
+#place endP
+#place Buff
+
+
+#trans eval_b_order 
+in {startP:<..>;}
+out {p31:<..>;}
+#endtr
+
+#trans b_reject
+in {p31:<..>;}
+out {Buff:<..>;}
+#endtr
+
+#trans t1
+in {Buff:<..>;}
+out {startP:<..>;}
+#endtr
+
+#trans t2
+in {Buff:<..>;}
+out {endP:<..>;}
+#endtr
+
+#trans b_accept
+in {p31:<..>;}
+out {p32:<..>;}
+#endtr
+
+#trans prepare_b
+in {p32:<..>;}
+out {p33:<..>;}
+#endtr
+
+#trans send_book
+in {p33:<..>;}
+out {endP:<..>;}
+#endtr
