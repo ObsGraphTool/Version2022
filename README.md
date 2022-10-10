@@ -4,7 +4,7 @@
 A brief instruction of the preparation of Observation Graph Tool .
 
 
-## Deployment
+## Setup Instructions
 
 To deploy this project, please download and unzip the file "ObsGraphToolS.zip" in the repository, **a Unix or Linux** environment is preferred to successfully compile the tool.
 
