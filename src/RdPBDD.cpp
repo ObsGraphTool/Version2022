@@ -70,7 +70,7 @@ bdd Trans::operator[](const bdd& n) const {
 /*****************************************************************/
 
 RdPBDD::RdPBDD(const net &R, int BOUND,bool init){
-    cout<<"constructeur RDPBDD"<<endl;
+    cout<<"RdPBDD Constructing..."<<endl;
     int nbPlaces=R.places.size(), i, domain;
 	vector<Place>::const_iterator p;
     DeadRdp=false;
@@ -97,10 +97,10 @@ RdPBDD::RdPBDD(const net &R, int BOUND,bool init){
 	transitionName=R.transitionName;
 	InterfaceTrans=R.InterfaceTrans;
 	Nb_places=R.places.size();
-cout<<"Nombre de places : "<<Nb_places<<endl;
+cout<<"Number of places  : "<<Nb_places<<endl;
   //  cout<<"herehh0"<<endl;
 
-	cout<<"Derniere place : "<<R.places[Nb_places-1].name<<endl;
+	cout<<"Final place is : "<<R.places[Nb_places-1].name<<endl;
 
 	for(i=0,p=R.places.begin();p!=R.places.end();i++,p++) {
 		if (p->hasCapacity()) {
@@ -290,7 +290,7 @@ bdd b= bdd_true();
 	delete [] idv;
 	delete [] idvp;
 	delete [] nbbit;
-//	cout<<"ici3"<<endl;
+	cout<<"Construction Complete!!!"<<endl<<endl<<endl;
 }
 
 /*----------------------------------- Reachability space using bdd ----------*/
@@ -1208,7 +1208,7 @@ void  RdPBDD::compute_canonical_deterministic_graph_OptProf(MDGraph& g)
 	      set_union(fire2.begin(),fire2.end(),intermfire.begin(),intermfire.end(),inserter(unionfire,unionfire.begin()));
 	      intermfire=unionfire;
 	      st.push(Pair(couple(reached_class,Complete_meta_state),fire));
-	    cout<<"combien delmnt?? "<<st.size()<<endl;
+
 
               //stmf.push(Pairint(couple(reached_class,Complete_meta_state),t));
 	      cout<<"Aggregat Empilee"<<endl;
@@ -1225,7 +1225,7 @@ void  RdPBDD::compute_canonical_deterministic_graph_OptProf(MDGraph& g)
                     //Calcul Mf
 	      if (fin !=bdd_false())
 	      { 
-		cout<<"MMMMMMMM marquage final appartient a l'aggregat calculee "<<endl;
+
 		unionpred_Mf=fin;
 		bdd tempo;
             
@@ -1827,9 +1827,7 @@ strict=false;
 
 set<Sets> RdPBDD:: computelamda(bdd s,int aff)
 {
-    // cout<<endl<<endl<<"aggregat: "<<endl;
-    //cout<<bddtable<<s;
-    cout<<"Computing Lamda... "<<endl;
+
     map<set<string>,bdd> Res;
     //a map contents a set of strings, and a bdd
     int nb=0;
@@ -1846,12 +1844,10 @@ set<Sets> RdPBDD:: computelamda(bdd s,int aff)
         bdd tmp;
         do
         {
-            cout<<"Looking for finalstate..."<<endl;
             tmp=from;
             //  from=(StepBackward(s&from,s));
             from=(StepBackward(from,s));
         }while(!(from==tmp));
-        cout<<"term: "<<endl;
         //cout<<bddtable<<from;
         set<string> tint;
         tint.insert("term");
@@ -1861,7 +1857,6 @@ set<Sets> RdPBDD:: computelamda(bdd s,int aff)
         Res.insert(make_pair(tint,from));
         nb++;
     }
-    cout<<"Final state finished, starting filling the map..."<<endl;
 
     //filling the map with couples {{o},S}
     set<int> Obs=firable_obs(s);
@@ -1869,8 +1864,7 @@ set<Sets> RdPBDD:: computelamda(bdd s,int aff)
     {
         bdd temp=FrontiereNodes2(s,(*f));
         if(temp!=bddfalse)
-	  { cout<<"There exists a final state, making map..."<<endl;
-	    set<string> tint;
+	  { set<string> tint;
         
 	    tint.insert(transitions[*f].name);
 	    Res.insert(make_pair(tint,temp));
@@ -1878,69 +1872,43 @@ set<Sets> RdPBDD:: computelamda(bdd s,int aff)
 	  }
         
     }
-    cout<<endl<<"RES INIT "<<endl;
      for (map<set<string>,bdd>::const_iterator il= Res.begin();(il!=Res.end());il++)
      
-     {cout<<"$$";
+     {
      set<string>::const_iterator jl=(*il).first.begin();
      do{
-     cout<<" "<<(*jl)<<" ";
      jl++;
      }while (jl!=(*il).first.end());
      }
-     cout<<endl;
-    
+
     // cout<<"here"<<endl;
     //reaffining of the map by associating elements which are enabled by the same set of states
     //  map<set<int>,bdd>::const_iterator i= Res.begin();
-         cout<<"Reaffining of the map by associating elements which are enabled by the same set of states"<<endl;
 
     for (map<set<string>,bdd>::iterator i= Res.begin();(i!=Res.end());i++)
     {
         
         Sets inter;
         inter.insert(i->first.begin(),i->first.end());
-          cout<<"i au debut (i from start) = ";
-         for(set<string>::iterator jl=(*i).first.begin();jl!=(*i).first.end();jl++)
-         {
-         cout<<*jl<<" ";
-         }
-         cout<<endl;
         bool un_ion=false;
         for (map<set<string>,bdd>::iterator j=i;(j!=Res.end());j++)
             //  for (map<string,bdd>::const_iterator j= Res.begin();(!((*i).first.compare((*j).first)));j++)
         {
             if (j!=i)
             {
-                 cout<<"j au debut (j from start) = ";
          for(set<string>::iterator jl=(*j).first.begin();jl!=(*j).first.end();jl++)
-         {
-         cout<<*jl<<" ";
-         }
-         cout<<endl;
-                
+
+
                 if ((*i).second==(*j).second)
                 {             
 		  un_ion=true;
-          cout<<"The bdd is the same, doing union..."<<endl;
-		  set_union(inter.begin(),inter.end(),(*j).first.begin(),(*j).first.end(),inserter(inter,inter.begin()));
+     	  set_union(inter.begin(),inter.end(),(*j).first.begin(),(*j).first.end(),inserter(inter,inter.begin()));
 
 
                   map<set<string>,bdd>::iterator jj=--j;
-                    /*       cout<<"jj pointe sur "<<endl;
-                         for(set<string>::const_iterator jl=(jj->first).begin();jl!=(jj->first).end();jl++)
-                         {
-                         cout<<(*jl)<<" ";
-                         }
-                         cout<<endl;*/
-		      //cout<<"AVANT ERASE j pointe sur "<<j->second<<endl;
                     Res.erase(++j);
 
-		     // cout<<"APRES ERASE j pointe sur "<<j->second<<endl;
-
-
-		    // Res.erase(*(j--).first);
-                    j=jj;
+	               j=jj;
 
                 }
       
@@ -1950,50 +1918,13 @@ set<Sets> RdPBDD:: computelamda(bdd s,int aff)
 		 bdd interbdd = i->second;
         if(un_ion)
         {
-	  cout<<"BDD was the same, i now pointe sur (Point to )     ";
-                     for(set<string>::const_iterator jl=(i->first).begin();jl!=(i->first).end();jl++)
-                     {
-                     cout<<(*jl)<<" ";
-                     }
-                     cout<<endl;
+	                 for(set<string>::const_iterator jl=(i->first).begin();jl!=(i->first).end();jl++)
+
 		     Res.insert(i,make_pair(inter,i->second));
             Res.erase(--i);
-
- cout<<"inter contient = ";
-         for(set<string>::const_iterator jl=inter.begin();jl!=inter.end();jl++)
-         {
-         cout<<*jl<<" ";
-         }
-         cout<<endl;
-	    
-		     // cout<<"Res est: "<<endl;
-		     /*for (map<set<string>,bdd>::const_iterator il= Res.begin();(il!=Res.end());il++)
-     
-     {
-       cout<<endl<<"$$";
-     set<string>::const_iterator jl=(*il).first.begin();
-     do{
-     cout<<" "<<(*jl)<<" ";
-     jl++;
-     }while (jl!=(*il).first.end());
-     }
-    
-     cout<<endl;*/
-	  cout<<"Deb Traitement "<<endl;
 	  map<set<string>,bdd>::iterator ii=i++;
 
 
-  for (map<set<string>,bdd>::const_iterator il= Res.begin();(il!=Res.end());il++)
-     
-     {cout<<endl<<"$$";
-     set<string>::const_iterator jl=(*il).first.begin();
-     do{
-     cout<<" "<<(*jl)<<" ";
-     jl++;
-     }while (jl!=(*il).first.end());
-     }
-  cout<<endl;
-	   
 
 
   i=(ii!=Res.end())? ii : --ii;
@@ -2048,34 +1979,7 @@ set<Sets> RdPBDD:: computelamda(bdd s,int aff)
     //cout<<"5555 "<<aff<<endl;
     
     //affichage de lamda | display lamda
-    if(aff==1)
-    {
-        cout<<"    LAMDA : ";
-        cout<<"{";
-        
-        for(set<Sets>::const_iterator m=lamda.begin();m!=lamda.end();m++)
-        {
-            cout<<"{";
-            // int virgule=0;
-            for(set<string>::const_iterator n=(*m).begin();n!=(*m).end();n++)
-            {//if((*n)==-2)
-                //  cout<<"term"<<" ";
-                //else if((*n)==-1)
-                //  cout<<"EV"<<" ";
-                //else
-                //  if((*n)!=-2 && (*n)!=-1)
-                
-                //cout<<transitions[(*n)].name<<" ";
-                cout<<(*n)<<" ";
-                // if (virgule)
-                // {
-                //   cout<<",";
-                // }
-                
-            }cout<<"}";
-        }
-        cout<<"}"<<endl;
-    }
+
     
   //  cout<<"hhhhcompute lamda"<<endl;
     return lamda;
@@ -2237,10 +2141,8 @@ bdd RdPBDD::FrontiereNodes2(bdd From,int i) const
 /*-------- Produit synchronis\E9 \E0 la vol\E9e de n graphes d'observation : Adaptation \E0 la capture des s\E9quences bloquantes et les s\E9quences divergentes----------------------*/
 void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBDD* Subnets[] ,int nbbddvar,int stopvolee)
 {
-    cout<<"_____________  GeneralizedSynchProduct1  _________________________"<<endl;
-    cout<<"There is "<<NbSubnets<<"Subnets(sous-reseaux) "<<endl;
-    //for(int k=0;k<NbSubnets;k++)
-    //	cout<<*Subnets[k]<<endl;
+    cout<<"______________________  GeneralizedSynchProduct_________________________"<<endl;
+
     int pos_trans(TRANSITIONS,string);
     TabMeta=new bdd[1000000];
     nbmetastate=0;
@@ -2255,11 +2157,10 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
     Set *fire2=new Set [NbSubnets];
     set<string> *tempObs=new set<string>[NbSubnets];
     set<string> unionObs,interO;
-    // Set *unionfire=new Set[NbSubnets],*intermfire=new Set[NbSubnets];
     Set unionfire;
     Set *intermfire=new Set[NbSubnets];
     Modular_Class_Of_State *Meta_State=new Modular_Class_Of_State;
-    //Remplir les tableaux avc les noms des transitions obs de chak reseau
+
     for(k=0;k<NbSubnets;k++)
     {
         Complete_meta_state[k]=Subnets[k]->Accessible_epsilon(Subnets[k]->M0);
@@ -2269,43 +2170,16 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
         for(Set::const_iterator i=Subnets[k]->Observable.begin();!(i==Subnets[k]->Observable.end());i++)
         {tempObs[k].insert(Subnets[k]->transitions[*i].name);
             
-            // cout<<"TEST "<<k<<"!!  "<<(*i)<<" et "<<Subnets[k]->transitions[*i].name<<endl;
-            
+
         }
-        
-        //	Meta_State->final=((Complete_meta_state[k]& Subnets[k].finalstate)!=bdd_false());
-        //Meta_State->State.push_back(Subnets[k]->FrontiereNodes(Complete_meta_state[k]));
-        //Meta_State->State.push_back(Subnets[k]->CanonizeR(Subnets[k]->FrontiereNodes(Complete_meta_state[k]),0));
         Meta_State->State.push_back(Subnets[k]->CanonizeR(Complete_meta_state[k],0));
-        //	Meta_State->lamda=Subnets[k]->computelamda(Complete_meta_state[k],Meta_State->final,Subnets[k]->Set_Div(Complete_meta_state[k]));
-        /*-------------------- STAT ----------------------*/
         TabMeta[nbmetastate]=Meta_State->State[k];
         nbmetastate++;
     }
-    //Affichage de tempObs
-    /*   for(k=0;k<NbSubnets;k++)
-     {cout<<"k "<<k<<endl;
-     for(set<string>::const_iterator i=tempObs[k].begin();i!=tempObs[k].end();i++)
-     {
-     string cr=(*i);
-     
-     cout<<"TEST "<<k<<"!!  "<<" et "<<cr<<endl;
-     
-     
-     }
-     
-     }*/
-    //union des Obs de chak reseau
     interO=tempObs[0];
     for(k=1;k<NbSubnets;k++){
-        //set_union(interO.begin(),interO.end(),tempObs[k].begin(),tempObs[k].end(),inserter(unionObs,unionObs.begin()));
         interO=unionObs;
     }
-    /*for(set<string>::const_iterator i=unionObs.begin();!(i==unionObs.end());i++)
-     cout<<"unionObs est : "<<(*i)<<endl<<endl;
-     */
-    //intermfire=fire2;
-
 
     old_size=bdd_anodecount(TabMeta,nbmetastate);
     Meta_State->blocage=true;
@@ -2318,7 +2192,7 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
     for(int j=0;((j<NbSubnets)&&(!Meta_State->final));j++)
         Meta_State->final|=((Complete_meta_state[j]&Subnets[j]->finalstate)!=bdd_false());
 
-    cout<<"(Aggregate) Final 1 = "<< Meta_State->final<<endl;
+
     // set<string> res;
     // res=Subnets[0]->computelamda(Complete_meta_state[0],Meta_State->final,true);
     set<Sets>  *lamdas= new set<Sets>[NbSubnets];
@@ -2336,7 +2210,7 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
     Gv.insert(Meta_State);
     nbmetastate++;
     st.push(StackElt(Couple(Meta_State,Complete_meta_state),fire));
-	    cout<<"combien delmnt?? "<<st.size()<<endl;
+	 //   cout<<"combien delmnt?? "<<st.size()<<endl;
 
     do
     { //cout<<"nbit ="<<NbIt<<endl;
@@ -2451,7 +2325,7 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
                          glamdas[1]=l;
                          Meta_State->lamda=Subnets[0]->computelamdaSyncro(glamdas,2);*/
                         st.push(StackElt(Couple(Meta_State,Complete_meta_state),fire));
-	    cout<<"combien delmnt?? "<<st.size()<<endl;
+	  //  cout<<"combien delmnt?? "<<st.size()<<endl;
 
                         e.first.first->Successors.insert(e.first.first->Successors.begin(),Modular_Edge(Meta_State,tmp));
                         //cout<<"temp"<<tmp<<" et t: "<<t<<"et transitions:"<< transitions[t].name<<endl;
@@ -2517,6 +2391,7 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
 	}
     else
         Gv.nodeadTrans=false;
+
     /*cout<<"taille de intermfire est : "<<intermfire.size()<<endl;
      cout<<"taille de unionfire est : "<<unionfire.size()<<endl;
      cout<<"taille de transitions est : "<<transitions.size()<<endl;*/
@@ -2527,6 +2402,8 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
     cout<<"NB ITERATIONS CONSTRUCTION : "<<NbIt<<endl;
     cout<<"NB ITERATIONS EXTERNES : "<<itext<<endl;
     cout<<"NB ITERATIONS INTERNES : "<<itint<<endl;
+
+
 }
 set<string> Union(set<string> s1,set<string> s2)
 {
@@ -2635,14 +2512,14 @@ void RdPBDD::GeneralizedSynchProduct_Prof(Modular_Obs_Graph& Gv, int NbSubnets,R
         
     }
     
-    // Meta_State->lamda=Subnets[0]->computelamdaSyncro(lamdas,NbSubnets);
+
     Meta_State->lamda=Gv.computelamdaSyncro(lamdas,NbSubnets,tempObs,1);
     delete [] lamdas;
     Gv.setInitialState(Meta_State);
     Gv.insert(Meta_State);
     nbmetastate++;
     st.push(StackElt(Couple(Meta_State,Complete_meta_state),fire));
-	    cout<<"combien delmnt?? "<<st.size()<<endl;
+
 
     do
     { 
@@ -2671,7 +2548,7 @@ void RdPBDD::GeneralizedSynchProduct_Prof(Modular_Obs_Graph& Gv, int NbSubnets,R
                 e.second[k].erase(t);
                 ConcernedSubnets.insert(k);
                 tmp=Subnets[k]->transitions[t].name;
-               // cout<<"tmp= "<<tmp<<endl;
+
                 for(int j=kk;j<NbSubnets;j++)
                 {
                     if(j!=k)
@@ -2735,7 +2612,7 @@ void RdPBDD::GeneralizedSynchProduct_Prof(Modular_Obs_Graph& Gv, int NbSubnets,R
                     Modular_Class_Of_State * pos=Gv.find(Meta_State);
                     if(!pos)
                     {
-		      	cout<<endl<<"Nouvel aggregat !!!!!"<<endl;
+
                         old_size=bdd_anodecount(TabMeta,nbmetastate);
                         //Calcul de deadlock et loop attributes
                         
@@ -2759,7 +2636,7 @@ void RdPBDD::GeneralizedSynchProduct_Prof(Modular_Obs_Graph& Gv, int NbSubnets,R
 
                         
                         st.push(StackElt(Couple(Meta_State,Complete_meta_state),fire));
-	    cout<<"combien delmnt?? "<<st.size()<<endl;
+
 
                         e.first.first->Successors.insert(e.first.first->Successors.begin(),Modular_Edge(Meta_State,tmp));
                         //cout<<"temp"<<tmp<<" et t: "<<t<<"et transitions:"<< transitions[t].name<<endl;
@@ -2788,9 +2665,9 @@ void RdPBDD::GeneralizedSynchProduct_Prof(Modular_Obs_Graph& Gv, int NbSubnets,R
 	 }
 	    else 
 	      {
-	     cout<<endl<<"Je depile!!!"<<endl;
+
 	    st.pop();
-	    cout<<"il reste combien delmnt?? "<<st.size()<<endl;
+
 	    ///// //set_union(e.first.first->Et.begin(),e.first.first->Et.end(),GlobalET.begin(),GlobalET.end(),inserter(GlobalET,GlobalET.begin()));
 
 	    }
@@ -2818,7 +2695,7 @@ void RdPBDD::GeneralizedSynchProduct_Prof(Modular_Obs_Graph& Gv, int NbSubnets,R
     /*cout<<"taille de intermfire est : "<<intermfire.size()<<endl;
      cout<<"taille de unionfire est : "<<unionfire.size()<<endl;
      cout<<"taille de transitions est : "<<transitions.size()<<endl;*/
-    cout<<" MAXIMAL INTERMEDIARY BDD SIZE \n"<<MaxIntBdd<<endl;
+    cout<<"MAXIMAL INTERMEDIARY BDD SIZE "<<MaxIntBdd<<endl;
     cout<<"OLD SIZE : "<<bdd_anodecount(TabMeta,nbmetastate)<<endl;
     cout<<"NB SHARED NODES : "<<bdd_anodecount(TabMeta,nbmetastate)<<endl;
     cout<<"NB META STATE DANS CONSTRUCTION : "<<nbmetastate<<endl;

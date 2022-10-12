@@ -78,7 +78,7 @@ Set Final_State;
   /* Constructors */  
   net(){};
   ~net(){};
-  net(const char *file,const char*Obs="", const char* Int="",const char *Place="");
+  net(const char* file, const char*Obs="", const char* Int="", const char *Place="");
   /* Monteur */
   bool addPlace(const string &place,int marking=0, int capacity=0);
   bool addQueue(const string &place,int capacity=0);

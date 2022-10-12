@@ -44,9 +44,8 @@ void Node::addReset(int node){
 /*                      class RdPE                         */
 /***********************************************************/
 net::net(const char *f,const char*Formula_trans, const char* Int_trans,const char *PlaceF){
-  cout<<"CREATION D'UN NOUVEAU SOUS-RESEAU \n";
+  cout<<"Creating a new Subnet...\n";
   if(create(f)){
-     cout<<"create(f)"<<endl;
 
     for (vector<class Place>::iterator p=places.begin();p!=places.end();p++){
       //cout<<"p->name: "<<p->name<<endl;
@@ -74,7 +73,7 @@ net::net(const char *f,const char*Formula_trans, const char* Int_trans,const cha
 	finalS(PlaceF);
 
     if(strlen(Int_trans)>0)
-    {cout<<" fichier d'interface est donné et  qui est : "<<Int_trans<<endl;
+    {//cout<<" fichier d'interface est donné et  qui est : "<<Int_trans<<endl;
       Set_Interface_Trans(Int_trans);
       //cout<<"transitions de l'interface non vide \n";
     }
@@ -87,7 +86,7 @@ net::net(const char *f,const char*Formula_trans, const char* Int_trans,const cha
 		  Observable.insert(i);
 
 
-cout<<"FIN CREATION \n";
+cout<<"Creation Finished \n";
 }
 /*---------------------------------Init Set of  transitions ------------------------------*/
 /*---------------------------------Set_formula_trans()------------------*/

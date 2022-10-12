@@ -44,9 +44,9 @@ void Node::addReset(int node){
 /*                      class RdPE                         */
 /***********************************************************/
 net::net(const char *f,const char*Formula_trans, const char* Int_trans,const char *PlaceF){
-  cout<<"CREATION D'UN NOUVEAU SOUS-RESEAU \n";
+  cout<<"Creating new subnet... \n";
   if(create(f)){
-     cout<<"create(f)"<<endl;
+     cout<<"Creating from file..."<<endl;
 
     for (vector<class Place>::iterator p=places.begin();p!=places.end();p++){
       //cout<<"p->name: "<<p->name<<endl;
@@ -66,7 +66,7 @@ net::net(const char *f,const char*Formula_trans, const char* Int_trans,const cha
     placeName.clear();
     transitionName.clear();  
   }
-  cout<<"fichier trans obst"<<endl;
+
  if(strlen(Formula_trans)>0)
   {
     //    cout<<"transitions de la formule non vide \n";
@@ -81,7 +81,7 @@ net::net(const char *f,const char*Formula_trans, const char* Int_trans,const cha
      
 
     if(strlen(Int_trans)>0)
-    {cout<<" fichier d'interface est donné et  qui est : "<<Int_trans<<endl;
+    {
       Set_Interface_Trans(Int_trans);
       //cout<<"transitions de l'interface non vide \n";
     }
@@ -102,10 +102,10 @@ net::net(const char *f,const char*Formula_trans, const char* Int_trans,const cha
       }
     if(strlen(PlaceF)>0)
       {
-	cout<<" fichier final est donné et  qui est : "<<PlaceF<<endl;
+
 	finalS(PlaceF);
       }
-cout<<"FIN CREATION \n";
+cout<<"Subnet created!!! \n";
 }
 /*---------------------------------Init Set of  transitions ------------------------------*/
 /*---------------------------------Set_formula_trans()------------------*/

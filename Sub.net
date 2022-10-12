@@ -1,0 +1,71 @@
+#place i2  mk(<..>)
+#place p21
+#place p22
+#place p23
+#place p24
+#place p25
+#place p26
+#place p27
+#place p28
+#place p29
+#place o2
+
+
+
+#trans order2
+in {i2:<..>;}
+out {p21:<..>;}
+#endtr
+
+#trans spec2
+in {p23:<..>;}
+out {p24:<..>;}
+#endtr
+
+#trans ship2
+in {p27:<..>;}
+out {o2:<..>;}
+#endtr
+
+
+#trans cost2
+in {p25:<..>;p29:<..>;}
+out {p27:<..>;}
+#endtr
+
+#trans proc_order
+in {p21:<..>;}
+out {p22:<..>;p23:<..>;}
+#endtr
+
+#trans Decide
+in {p22:<..>;}
+out {p28:<..>;}
+#endtr
+
+#trans LongP
+in {p28:<..>;}
+out {p29:<..>;}
+#endtr
+
+#trans ShortP
+in {p28:<..>;}
+out {p29:<..>;}
+#endtr
+
+
+#trans Discuss
+in {p24:<..>;}
+out {p25:<..>;}
+#endtr
+
+
+#trans Produce
+in {p27:<..>;}
+out {p26:<..>;}
+#endtr
+
+#trans Assemble
+in {p26:<..>;}
+out {p27:<..>;}
+#endtr

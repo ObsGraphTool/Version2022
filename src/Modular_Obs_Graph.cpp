@@ -128,13 +128,19 @@ void Modular_Obs_Graph::TAB_BDDNODES(Modular_Class_Of_State * S, size_t &nb)
 void Modular_Obs_Graph::printCompleteInformation(int nbsubnets)
 {
 
-	
-	cout << "\n\nGRAPH SIZE : \n";
+    if (DeadMG)
+
+        cout<<endl<<"!!!THE GRAPH CONTAINS A DEADLOCK STATE!!!"<<endl;
+    else    cout<<endl<<"***THE GRAPH IS DEADLOCKFREE***"<<endl;
+    cout<<"-------------------------------------------"<<endl;
+
+    cout << "\n\nGRAPH SIZE : \n";
 	cout<< "\n\tNB MARKING : "<< nbMarking;
 	cout<< "\n\tNB NODES : "<< nbStates;
 	cout<<"\n\tNB ARCS : " <<nbArcs<<endl;
 	cout<<" \n\nCOMPLETE INFORMATION ?(y/n)\n";
-	char c;
+
+    char c;
 	cin>>c;
 	//InitVisit(initialstate,n);
 	Temp=new bdd[nbStates*nbsubnets];
@@ -147,7 +153,7 @@ void Modular_Obs_Graph::printCompleteInformation(int nbsubnets)
 
 	if(c=='y'||c=='Y')
 	{
-		size_t n=1;
+		 size_t n=1;
 		 printGraph(initialstate,n);
 	}
 	
@@ -326,7 +332,7 @@ Sets Intersection(Sets s1,Sets s2)
     Sets Res;
     Sets::const_iterator it1=s1.begin();
     Sets::const_iterator it2=s2.begin();
-    cout<<"Finding the intersected set here..."<<endl;
+
     while(it1!=s1.end() && it2!=s2.end())
     {
         int comp=(*it1).compare((*it2));
@@ -350,7 +356,7 @@ Sets Minus(Sets s1,Sets s2)
     Sets Res;
     Sets::const_iterator it1=s1.begin();
     Sets::const_iterator it2=s2.begin();
-    cout<<"Doing Minus here.."<<endl;
+
 
     while(it1!=s1.end() && it2!=s2.end())
     {
@@ -362,12 +368,12 @@ Sets Minus(Sets s1,Sets s2)
         }
         else
             if(comp<0)
-            {   cout<<"Minus set found,Comp<0, The comp is "<<*it1<<endl;
+            {
                 Res.insert(*it1);
                 *it1++;
             }
             else
-                cout<<"Minus set found,Comp>=0, The comp is "<<*it2<<endl;
+
                 *it2++;
     }
     while(it1!=s1.end())
@@ -384,7 +390,7 @@ Sets Union_(Sets s1,Sets s2)
     Sets Res;
     Sets::const_iterator it1=s1.begin();
     Sets::const_iterator it2=s2.begin();
-    cout<<"Doing Union_ here..."<<endl;
+
     while(it1!=s1.end() &&it2!=s2.end())
     {
         int comp=(*it1).compare((*it2));
@@ -396,12 +402,12 @@ Sets Union_(Sets s1,Sets s2)
         }
         else
             if(comp<0)
-            {   cout<<"Union set found,Comp<0, The comp is "<<*it1<<endl;
+            {
                 Res.insert(*it1);
                 *it1++;
             }
             else
-            {   cout<<"Union set found,Comp>=0, The comp is "<<*it2<<endl;
+            {
                 Res.insert(*it2);
                 *it2++;
             }
@@ -420,7 +426,7 @@ Sets Union_(Sets s1,Sets s2)
 }
 Sets Composition(Sets e1, Sets e2, Sets o1, Sets o2)
 {
-    cout<<"Doing function composition "<<endl;
+
 
     return Union_(Union_(Intersection(e1,e2),Intersection(e1,Minus(o1,o2))),Intersection(e2,Minus(o2,o1)));
 
@@ -462,7 +468,7 @@ set<Sets> Modular_Obs_Graph::computelamdaSyncro(set<Sets>* s,int nb,set<string> 
     set<Sets> lambda_cour=s[0];
     set<string> Obsactuel=tempObs[0];
     int i;
-    cout<<"Computing Synchronized Lamda"<<endl;
+
     for(i=1;i<nb;i++)
     {
         set<Sets> lambda_nouv;
@@ -474,117 +480,16 @@ set<Sets> Modular_Obs_Graph::computelamdaSyncro(set<Sets>* s,int nb,set<string> 
                     DeadMG=true;
                 lambda_nouv.insert(res);
             }
+
+
         lambda_cour=lambda_nouv;
         
         Obsactuel=Union_(Obsactuel,tempObs[i]);
     }
-    
-    cout<<"LAMDA GLOBAL : ";
-    cout<<"{";
-    
-    for(set<Sets>::const_iterator m=lambda_cour.begin();m!=lambda_cour.end();m++)
-    {
-        cout<<"{";
-        for(set<string>::const_iterator n=(*m).begin();n!=(*m).end();n++)
-        {
-            cout<<(*n)<<" ";
-        }
-        cout<<"}";
-    }
-    cout<<"}"<<endl<<endl;
-    
+
+
     return lambda_cour;
 }
-/*
-set<string> Modular_Obs_Graph::computelamdaSyncro(set<string> *s,int nb,int aff)
-{cout<<"Debut"<<endl;
-    set<string> Res;
-    bool found[nb-1];
-    
-    
-    for(int i=0;i<nb;i++)
-    { //for(int i=0;i<nb-1;i++)
-        found[i]=false;
-        for(set<string>::const_iterator it1=s[i].begin();it1!=s[i].end();it1++)
-            
-        {string cr=(*it1);
-            while((*it1).find(',')!=(-1))
-            {cout<<endl<<"heyoo plusieurs"<<endl;
-                string stemp=(*it1).substr(0,(*it1).find(','));
-                cout<<"stemp"<<stemp<<endl;
-                string rste=(*it1).substr((*it1).find(',')+1);
-                cout<<"rste"<<rste<<endl;
-                
-            }
-            int k =0;
-            for (int j=0;j<nb;j++)
-            {
-                if(j!=i)
-                {
-                    
-                    bool test=true;
-                    set<string>::const_iterator it2=s[j].begin();
-                    
-                    while (it2!=s[j].end()&& test)
-                    {
-                        cout<<"on cherche "<<(*it1)<<" dans "<<(*it2)<<endl;
-                        if(((*it2).find((*it1))==(-1)))
-                        {cout<<"not found"<<endl;
-                            if((*it1).find(*it2)==(-1))
-                            { cout<<"not found"<<endl;
-                                test=false;
-                            }
-                            else
-                                cr=(*it2);
-                        }
-                        //  else cr=(*it1);
-                        it2++;
-                    }
-                    found[k]=test;
-                    k++;
-                }
-                
-            }
-            cout<<"cr= "<<cr<<endl;
-            bool founds=true;
-            for(int m=0;m<nb-1;m++)
-                if(found[m]==false)
-                    founds=false;
-            for(int i=0;i<=nb-1;i++)
-                cout<<"foud= "<<found[i]<<endl;
-            if(founds )
-            {//cout<<"here1"<<endl;
-                Res.insert((cr));
-            }
-            else
-            {
-                Res.insert("EV");
-                DeadMG=true; 
-                // cout<<"here2"<<endl;
-            }
-        }   
-    }
-    cout<<"FIN"<<endl;
-    
-    //affichage de lamda 
-    if(aff==1)
-    {
-        cout<<"    LAMDA final : ";
-        //for(int j=0;j<nb;j++)
-        {cout<<"{";
-            for(set<string>::const_iterator i=Res.begin();i!=Res.end();i++)
-            { 
-                string cr=(*i); 
-                cout<<"{"<<cr<<"}";
-                
-            }
-            cout<<"}"<<endl;
-        }
-    } 
-    return Res;
-    
-}
-*/
 /*-----------------contruct_Modular_Obs_Graph()---------------------*/
 void Modular_Obs_Graph::construct_Modular_Obs_Graph(set<const char*> l, int n)
 {

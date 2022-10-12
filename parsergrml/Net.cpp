@@ -44,7 +44,7 @@ void Node::addReset(int node){
 /*                      class RdPE                         */
 /***********************************************************/
 net::net(const char *f,const char*Formula_trans, const char* Int_trans,const char *PlaceF){
-    cout<<"CREATION D'UN NOUVEAU SOUS-RESEAU \n";
+    cout<<"make CREATION D'UN NOUVEAU SOUS-RESEAU \n";
     if(create(f)){
         // cout<<"create(f)"<<endl;
         

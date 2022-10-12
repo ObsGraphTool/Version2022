@@ -60,13 +60,8 @@ int MDGraph::NbBddNode(Class_Of_State * S, size_t& nb)
 /*----------------------Visualisation du graphe------------------------*/
 void MDGraph::printCompleteInformation()
 {
-    /*cout<<endl<<"-------------------------------------------"<<endl;
-     
-     if (DeadMG)
-     cout<<"CONC: THE GRAPH CONTAINS A DEADLOCK STATE "<<endl;
-     else    cout<<"CONC: THE GRAPH IS DEADLOCKFREE "<<endl;
-     cout<<"-------------------------------------------"<<endl;*/
-	
+
+
 	cout << "\n\nGRAPH SIZE : \n";
 	cout<< "\n\tNB MARKING : "<< nbMarking;
 	cout<< "\n\t*NB NODES : "<< nbStates;

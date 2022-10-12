@@ -43,10 +43,10 @@ void Node::addReset(int node){
 /***********************************************************/
 /*                      class RdPE                         */
 /***********************************************************/
-net::net(const char *f,const char*Formula_trans, const char* Int_trans,const char *PlaceF){
-  cout<<"CREATION New Sub-net \n";
+net::net(const char* f, const char*Formula_trans, const char* Int_trans, const char *PlaceF){
+  cout<<"Creating New Sub-net... \n";
   if(create(f)){
-     cout<<"Creating Sub-Net based on"<<f<<endl;
+    // cout<<"Creating Sub-Net based on"<<f<<endl;
 
     for (vector<class Place>::iterator p=places.begin();p!=places.end();p++){
       //cout<<"p->name: "<<p->name<<endl;
@@ -77,12 +77,12 @@ net::net(const char *f,const char*Formula_trans, const char* Int_trans,const cha
     Set_Formula_Trans(Formula_trans);
       
       if(strlen(PlaceF)>0)
-      {cout<<" fichier final est donné et  qui est : "<<PlaceF<<endl;
+     {//cout<<" Final place file is given in: "<<PlaceF<<endl;
 
 	finalS(PlaceF);}
 
     if(strlen(Int_trans)>0)
-    {cout<<" fichier d'interface est donné et  qui est : "<<Int_trans<<endl;
+    {//cout<<" Interface file is given in "<<Int_trans<<endl;
       Set_Interface_Trans(Int_trans);
       //cout<<"transitions de l'interface non vide \n";
     }
@@ -152,7 +152,7 @@ bool net::Set_Formula_Trans(const char * f)
 		}
 	}
 	fclose(in);
-cout<<"fin formule_trans fct"<<endl;
+
 	return true;
 }
 
