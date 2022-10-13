@@ -89,6 +89,7 @@ Examples used to test the tool can be found in this paper
 ](https://www.sciencedirect.com/science/article/pii/S0169023X11000140)
 
 
+
 ## Test examples/usages
 
 ```
@@ -119,5 +120,5 @@ Exemple dead et relax sound
 
 ## Support
 
-For support, email Yanwu.zhu@efrei.net / hanen.ochi@efrei.fr, or post an issue at this repository.
+For support, email hanen.ochi@efrei.fr / Yanwu.zhu@efrei.net, or post an issue at this repository.
 
