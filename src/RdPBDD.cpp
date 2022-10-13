@@ -2141,7 +2141,7 @@ bdd RdPBDD::FrontiereNodes2(bdd From,int i) const
 /*-------- Produit synchronis\E9 \E0 la vol\E9e de n graphes d'observation : Adaptation \E0 la capture des s\E9quences bloquantes et les s\E9quences divergentes----------------------*/
 void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBDD* Subnets[] ,int nbbddvar,int stopvolee)
 {
-    cout<<"______________________  GeneralizedSynchProduct_________________________"<<endl;
+    cout<<"______________________ Generating Synchronized Product_________________________"<<endl;
 
     int pos_trans(TRANSITIONS,string);
     TabMeta=new bdd[1000000];
@@ -2392,9 +2392,11 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
     else
         Gv.nodeadTrans=false;
 
+
+
     /*cout<<"taille de intermfire est : "<<intermfire.size()<<endl;
      cout<<"taille de unionfire est : "<<unionfire.size()<<endl;
-     cout<<"taille de transitions est : "<<transitions.size()<<endl;*/
+     cout<<"taille de transitions est : "<<transitions.size()<<endl;
     cout<<" MAXIMAL INTERMEDIARY BDD SIZE \n"<<MaxIntBdd<<endl;
     cout<<"OLD SIZE : "<<bdd_anodecount(TabMeta,nbmetastate)<<endl;
     cout<<"NB SHARED NODES : "<<bdd_anodecount(TabMeta,nbmetastate)<<endl;
@@ -2402,7 +2404,7 @@ void RdPBDD::GeneralizedSynchProduct1(Modular_Obs_Graph& Gv, int NbSubnets,RdPBD
     cout<<"NB ITERATIONS CONSTRUCTION : "<<NbIt<<endl;
     cout<<"NB ITERATIONS EXTERNES : "<<itext<<endl;
     cout<<"NB ITERATIONS INTERNES : "<<itint<<endl;
-
+*/
 
 }
 set<string> Union(set<string> s1,set<string> s2)

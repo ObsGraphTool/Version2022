@@ -138,10 +138,10 @@ void Modular_Obs_Graph::printCompleteInformation(int nbsubnets)
 	cout<< "\n\tNB MARKING : "<< nbMarking;
 	cout<< "\n\tNB NODES : "<< nbStates;
 	cout<<"\n\tNB ARCS : " <<nbArcs<<endl;
-	cout<<" \n\nCOMPLETE INFORMATION ?(y/n)\n";
+
 
     char c;
-	cin>>c;
+//	cin>>c;
 	//InitVisit(initialstate,n);
 	Temp=new bdd[nbStates*nbsubnets];
 	size_t n=1;
@@ -150,13 +150,13 @@ void Modular_Obs_Graph::printCompleteInformation(int nbsubnets)
 	cout<<"NB BDD NODE : "<<bdd_anodecount(Temp,nbStates*nbsubnets)<<endl;
 	//cout<<"Shared Nodes : "<<bdd_anodecount(Tab,nbStates)<<endl;
 	InitVisit(initialstate,1);
-
+/*
 	if(c=='y'||c=='Y')
 	{
 		 size_t n=1;
 		 printGraph(initialstate,n);
 	}
-	
+*/
 }
 /*********                  printGraph    *****/
 	

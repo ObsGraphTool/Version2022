@@ -46,7 +46,7 @@ int main()
     cout<<"\tQUIT : 0"<<endl;
     cin>>Nbservice;
     int nf=3*Nbservice;
-    string strservice[nf+3];git 
+    string strservice[nf+3];
     cout<<"There are * "<<nf<<" * files of "<<Nbservice<<" service to be input! Please follow the following instructions:"<<endl<<endl;
     int NbSubnets=Nbservice;
     net **Subnets=new net*[NbSubnets];
@@ -84,14 +84,8 @@ int main()
     double TpsInit = (double)(clock()) / CLOCKS_PER_SEC;
     BddSubnets[0]->GeneralizedSynchProduct1(Gv,NbSubnets,BddSubnets,NbBddVar,1);
 
-
-
-
-    double TpsConstruct = ((double)(clock()) / CLOCKS_PER_SEC) - TpsInit;
-    cout << "SYNCHRONIZATION TIME:    " << TpsConstruct<< endl;
-    cout<<"GRAPHE DE LA FORMULE \n";
     Gv.printCompleteInformation(NbSubnets);
-    bdd_done();
+    //bdd_done();
 
     cout<<endl<<"\nWould you like to substitute a Service?(Y/N)"<<endl;
     char c;
@@ -119,8 +113,6 @@ int main()
 
 
 
-        bdd_done();
-
 
         int NbBddVar=Subnets[0]->nbPlace();
         for(int i=0;i<NbSubnets;i++)
@@ -135,10 +127,9 @@ int main()
         double TpsInit = (double)(clock()) / CLOCKS_PER_SEC;
         BddSubnets[0]->GeneralizedSynchProduct1(Gv,NbSubnets,BddSubnets,NbBddVar,1);
 
+        Gv.printCompleteInformation(NbSubnets);
 
 
-
-        double TpsConstruct = ((double)(clock()) / CLOCKS_PER_SEC) - TpsInit;
         bdd_done();
 
 
