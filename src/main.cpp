@@ -47,7 +47,7 @@ int main()
     cin>>Nbservice;
     int nf=3*Nbservice;
     string strservice[nf+3];
-    cout<<"There are * "<<nf<<" * files of "<<Nbservice<<" service to be input! Please follow the following instructions:"<<endl<<endl;
+    cout<<"\nThere are * "<<nf<<" * files of "<<Nbservice<<" service to be input! Please follow the following instructions:"<<endl<<endl;
     int NbSubnets=Nbservice;
     net **Subnets=new net*[NbSubnets];
     RdPBDD **BddSubnets=new RdPBDD*[NbSubnets];
@@ -56,13 +56,13 @@ int main()
 
     for (int i=1,j=0; i<nf+1;i=i+3,j++)
     {
-        cout<<"Please enter the address of *The net file* for the Service No."<<j+1<<endl;
+        cout<<"\nPlease enter the address of *The net file* for the Service No."<<j+1<<endl;
         cin>>strservice[i];
-        cout<<"Please enter the address of *The Observed action* for the Service No."<<j+1<<endl;
+        cout<<"\nPlease enter the address of *The Observed action* for the Service No."<<j+1<<endl;
         cin>>strservice[i+1];
-        cout<<"Please enter the address of *The Final state file * for the Service No."<<j+1<<endl;
+        cout<<"\nPlease enter the address of *The Final state file * for the Service No."<<j+1<<endl;
         cin>>strservice[i+2];
-        cout<<"File input finished, constructing Subnets..."<<endl;
+        cout<<"\nFile input finished, constructing Subnets..."<<endl;
         Subnets[j]=new net(strservice[i].c_str(), strservice[i+1].c_str(), Int, strservice[i+2].c_str());
         BddSubnets[j]=new RdPBDD(*Subnets[j],1,true);
     }
@@ -86,22 +86,23 @@ int main()
 
     Gv.printCompleteInformation(NbSubnets);
     //bdd_done();
-
+    cout<<"________________________________________________"<<endl;
     cout<<endl<<"\nWould you like to substitute a Service?(Y/N)"<<endl;
+    cout<<"________________________________________________"<<endl;
     char c;
     int selectservice;
     cin>>c;
      if(c=='y'||c=='Y')
     {
-         cout<<"Please indicate the number of the service you want to substitute"<<endl;
+         cout<<"\nPlease indicate the number of the service you want to substitute"<<endl;
          cin>>selectservice;
-         cout<<"You have selected service  **"<<selectservice<<"**"<<endl;
-         cout<<"Please input files for service to be substituted:"<<endl;
-        cout<<"Please enter the address of *The net file* for the Alternative Service "<<endl;
+         cout<<"\nYou have selected service  **"<<selectservice<<"**"<<endl;
+         cout<<"\nPlease input files for service to be substituted:"<<endl;
+        cout<<"\nPlease enter the address of *The net file* for the Alternative Service "<<endl;
         cin>>strservice[3*selectservice-2];
-        cout<<"Please enter the address of *The Observed action* for the Alternative Service"<<endl;
+        cout<<"\nPlease enter the address of *The Observed action* for the Alternative Service"<<endl;
         cin>>strservice[3*selectservice-1];
-        cout<<"Please enter the address of *The Final state file * for the Alternative Service"<<endl;
+        cout<<"\nPlease enter the address of *The Final state file * for the Alternative Service"<<endl;
         cin>>strservice[3*selectservice];
 
         for (int i=1,j=0; i<nf+1;i=i+3,j++)

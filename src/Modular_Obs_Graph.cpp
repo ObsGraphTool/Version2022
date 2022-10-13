@@ -125,14 +125,16 @@ void Modular_Obs_Graph::TAB_BDDNODES(Modular_Class_Of_State * S, size_t &nb)
 	}
 }
 /*------------------------------------------Affichage du graphe -------------*/
-void Modular_Obs_Graph::printCompleteInformation(int nbsubnets)
-{
+void Modular_Obs_Graph::printCompleteInformation(int nbsubnets) {
 
-    if (DeadMG)
-
-        cout<<endl<<"!!!THE GRAPH CONTAINS A DEADLOCK STATE!!!"<<endl;
-    else    cout<<endl<<"***THE GRAPH IS DEADLOCKFREE***"<<endl;
-    cout<<"-------------------------------------------"<<endl;
+    if (DeadMG) {
+        cout << "-------------------------------------------" << endl;
+        cout << endl << "!!!THE GRAPH CONTAINS A DEADLOCK STATE!!!" << endl;
+    } else
+    {cout << "-------------------------------------------" << endl;
+    cout << endl << "***THE GRAPH IS DEADLOCKFREE***" << endl;
+    }
+        cout<<"-------------------------------------------"<<endl;
 
     cout << "\n\nGRAPH SIZE : \n";
 	cout<< "\n\tNB MARKING : "<< nbMarking;
@@ -147,7 +149,7 @@ void Modular_Obs_Graph::printCompleteInformation(int nbsubnets)
 	size_t n=1;
 	//cout<<"NB BDD NODE : "<<NbBddNode(initialstate,n)<<endl;
 	TAB_BDDNODES(initialstate,n);
-	cout<<"NB BDD NODE : "<<bdd_anodecount(Temp,nbStates*nbsubnets)<<endl;
+	cout<<"\tNB BDD NODE : "<<bdd_anodecount(Temp,nbStates*nbsubnets)<<endl;
 	//cout<<"Shared Nodes : "<<bdd_anodecount(Tab,nbStates)<<endl;
 	InitVisit(initialstate,1);
 /*

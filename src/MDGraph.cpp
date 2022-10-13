@@ -74,7 +74,7 @@ void MDGraph::printCompleteInformation()
 	size_t n=1;
 	//cout<<"NB BDD NODE : "<<NbBddNode(initialstate,n)<<endl;
 	NbBddNode(initialstate,n);
-	cout<<"NB BDD NODE : "<<bdd_anodecount(Tab,(int)nbStates)<<endl;
+	cout<<"\tNB BDD NODE : "<<bdd_anodecount(Tab,(int)nbStates)<<endl;
 	//cout<<"Shared Nodes : "<<bdd_anodecount(Tab,nbStates)<<endl;
 	InitVisit(initialstate,1);
 	//int toto;cin>>toto;
