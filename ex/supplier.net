@@ -1,0 +1,76 @@
+#place ip mk(<..>)
+#place pp1
+#place pp2
+#place pp3
+#place pp4
+#place pp5
+#place pp6
+#place pp7
+#place pp8
+#place pp9
+#place op
+
+#trans tdp1i
+in {ip:<..>;}
+out {pp1:<..>;}
+#endtr
+
+
+#trans tp2
+in {pp1:<..>;}
+out {pp2:<..>;}
+#endtr
+
+#trans tp3
+in {pp2:<..>;}
+out {pp3:<..>;}
+#endtr
+
+#trans tp9
+in {pp3:<..>;}
+out {pp8:<..>;}
+#endtr
+
+#trans tp10
+in {pp8:<..>;}
+out {pp9:<..>;}
+#endtr
+
+
+
+#trans tpd1o
+in {pp2:<..>;pp9:<..>;}
+out {pp4:<..>;}
+#endtr
+
+
+#trans tdp2i
+in {pp4:<..>;}
+out {op:<..>;}
+#endtr
+
+#trans tdp3i
+in {pp4:<..>;}
+out {pp5:<..>;}
+#endtr
+
+
+#trans tpd2o
+in {pp5:<..>;}
+out {pp6:<..>;}
+#endtr
+
+
+#trans tdp4i
+in {pp6:<..>;}
+out {pp7:<..>;}
+#endtr
+
+#trans tpd3o
+in {pp7:<..>;}
+out {op:<..>;}
+#endtr
+
+
+
+

@@ -1,0 +1,149 @@
+#place id mk (<..>)
+#place pd1
+#place pd2
+#place pd3
+#place pd4
+#place pd5
+#place pd6
+#place pd7
+#place pd8
+#place pd9
+#place pd10
+#place pd11
+#place pd12
+#place pd13
+#place pd14
+#place pd15
+#place pd16
+#place pd17
+#place pd18
+#place pd19
+#place pd20
+#place pd21
+#place pd22
+#place od
+
+#trans tcd1i
+in {id:<..>;}
+out {pd1:<..>;}
+#endtr
+
+#trans td2
+in {pd1:<..>;}
+out {pd2:<..>;}
+#endtr
+
+#trans tdp1o
+in {pd2:<..>;}
+out {pd3:<..>;}
+#endtr
+
+#trans tdc1o
+in {pd2:<..>;}
+out {pd4:<..>;}
+#endtr
+
+#trans tpd1i
+in {pd3:<..>;}
+out {pd5:<..>;pd6:<..>;}
+#endtr
+
+#trans td6
+in {pd5:<..>;}
+out {pd8:<..>;}
+#endtr
+
+#trans td7
+in {pd6:<..>;}
+out {pd7:<..>;}
+#endtr
+
+#trans td8
+in {pd8:<..>;}
+out {pd9:<..>;}
+#endtr
+
+#trans td9
+in {pd8:<..>;}
+out {pd10:<..>;}
+#endtr
+
+#trans td10
+in {pd7:<..>;}
+out {pd11:<..>;}
+#endtr
+
+#trans td11
+in {pd7:<..>;}
+out {pd12:<..>;}
+#endtr
+
+#trans td12
+in {pd9:<..>;pd11:<..>;}
+out {pd13:<..>;}
+#endtr
+
+#trans td13
+in {pd10:<..>;pd11:<..>;}
+out {pd13:<..>;}
+#endtr
+
+#trans td14
+in {pd11:<..>;pd12:<..>;}
+out {pd13:<..>;}
+#endtr
+
+#trans td15
+in {pd9:<..>;pd12:<..>;}
+out {pd14:<..>;}
+#endtr
+
+#trans tdp3o
+in {pd14:<..>;}
+out {pd15:<..>;}
+#endtr
+
+#trans tpd2i
+in {pd15:<..>;}
+out {pd16:<..>;}
+#endtr
+
+#trans tdp4o
+in {pd16:<..>;}
+out {pd17:<..>;}
+#endtr
+
+#trans tpd3i
+in {pd17:<..>;}
+out {pd20:<..>;}
+#endtr
+
+#trans td23
+in {pd19:<..>;}
+out {od:<..>;}
+#endtr
+
+#trans td24
+in {pd20:<..>;}
+out {pd21:<..>;}
+#endtr
+
+#trans td25
+in {pd21:<..>;}
+out {pd22:<..>;}
+#endtr
+
+#trans td26
+in {pd22:<..>;}
+out {pd4:<..>;}
+#endtr
+
+#trans tcd2i
+in {pd4:<..>;}
+out {pd18:<..>;}
+#endtr
+
+#trans tdc2o
+in {pd18:<..>;}
+out {pd19:<..>;}
+#endtr

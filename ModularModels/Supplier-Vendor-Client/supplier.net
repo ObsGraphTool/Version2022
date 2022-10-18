@@ -1,0 +1,90 @@
+#place ip mk(<..>)
+#place pp1
+#place pp2
+#place pp3
+#place pp4
+#place pp5
+#place pp6
+#place pp7
+#place pp8
+#place pp9
+#place bp1
+#place bp2
+#place bp3
+#place bp4
+#place bp5
+#place bp6
+#place bp7
+#place op
+
+#trans tdp1?
+in {ip:<..>;bp1:<..>;}
+out{pp1:<..>;}
+#endtr
+
+
+#trans tp2
+in {pp1:<..>;}
+out{pp2:<..>;}
+#endtr
+
+#trans tp3
+in {pp2:<..>;}
+out{pp3:<..>;}
+#endtr
+
+#trans tp9
+in {pp3:<..>;}
+out{pp8:<..>;}
+#endtr
+
+#trans tp10
+in {pp8:<..>;}
+out{pp9:<..>;}
+#endtr
+
+
+
+
+#trans tdp1
+in {pp2:<..>;}
+out{pp4:<..>;bp2:<..>;}
+#endtr
+
+#trans tdp1!
+in {pp9:<..>;}
+out{pp4:<..>;bp2:<..>;}
+#endtr
+
+
+
+#trans tdp2?
+in {pp4:<..>;bp3:<..>;}
+out{op:<..>;}
+#endtr
+
+#trans tdp3?
+in {pp4:<..>;bp4:<..>}
+out{pp5:<..>;}
+#endtr
+
+
+#trans tdp2!
+in {pp5:<..>;}
+out{pp6:<..>;bp5:<..>;}
+#endtr
+
+
+#trans tdp4?
+in {pp6:<..>;bp6:<..>;}
+out{pp7:<..>;}
+#endtr
+
+#trans tdp3!
+in {pp7:<..>;}
+out{op:<..>;bp7:<..>;}
+#endtr
+
+
+
+

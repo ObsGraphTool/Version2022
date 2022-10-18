@@ -131,7 +131,7 @@ void Modular_Obs_Graph::printCompleteInformation(int nbsubnets) {
         cout << "-------------------------------------------" << endl;
         cout << endl << "!!!THE GRAPH CONTAINS A DEADLOCK STATE!!!" << endl;
     } else
-    {gicout << "-------------------------------------------" << endl;
+    {cout << "-------------------------------------------" << endl;
     cout << endl << "***THE GRAPH IS DEADLOCKFREE***" << endl;
     }
         cout<<"-------------------------------------------"<<endl;

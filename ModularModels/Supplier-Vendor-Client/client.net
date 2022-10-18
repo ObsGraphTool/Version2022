@@ -1,0 +1,41 @@
+#place pc1
+#place pc2
+#place pc3
+#place pc4
+#place pc5
+#place bc1
+#place bc2
+#place bc3
+#place bc4
+#place bc'2
+
+#trans tcd1!
+in {pc1<..>;}
+out {bc1<..>;pc2<..>;}
+#endtr
+
+
+
+#trans tdc1?
+in {pc2<..>;bc2<..>;}
+out {pc3<..>;}
+#endtr
+
+
+#trans tdc'1
+in {pc2<..>;bc'2<..>;}
+out {pc5<..>;}
+#endtr
+
+#trans tcd2!
+in {pc3<..>;}
+out {pc4<..>;bc3<..>;}
+#endtr
+
+#trans tdc2?
+in {pc4<..>;bc4<..>;}
+out {pc5<..>;}
+#endtr
+
+
+

@@ -1,0 +1,35 @@
+#place pc1 mk (<..>)
+#place pc2
+#place pc3
+#place pc4
+#place pc5
+
+#trans tcd1o
+in {pc1:<..>;}
+out {pc2:<..>;}
+#endtr
+
+
+#trans tdc1i
+in {pc2:<..>;}
+out {pc3:<..>;}
+#endtr
+
+
+#trans tdcs1i
+in {pc2:<..>;}
+out {pc5:<..>;}
+#endtr
+
+#trans tcd2o
+in {pc3:<..>;}
+out {pc4:<..>;}
+#endtr
+
+#trans tdc2i
+in {pc4:<..>;}
+out {pc5:<..>;}
+#endtr
+
+
+
