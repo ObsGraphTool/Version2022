@@ -1,0 +1,64 @@
+#place bp1
+#place bp2
+#place bp3
+#place bp4
+#place bp5
+#place bp6
+#place bp7
+
+
+#trans tdp1i
+in {bp1:<..>;}
+#endtr
+
+#trans tdp1o
+out {bp1:<..>;}
+#endtr
+
+#trans tpd1o
+out {bp2:<..>;}
+#endtr
+
+#trans tpd1i
+in {bp2:<..>;}
+#endtr
+
+#trans tdp3i
+in {bp4:<..>;}
+#endtr
+
+#trans tdp3o
+out {bp4:<..>;}
+#endtr
+
+#trans tpd2o
+out {bp5:<..>;}
+#endtr
+
+#trans tpd2i
+in {bp5:<..>;}
+#endtr
+
+#trans tdp4i
+in {bp6:<..>;}
+#endtr
+
+#trans tdp4o
+in {bp6:<..>;}
+#endtr
+
+#trans tpd3i
+in {bp7:<..>;}
+#endtr
+
+#trans tpd3o
+out {bp7:<..>;}
+#endtr
+
+#trans tdp2i
+in {bp3:<..>;}
+#endtr
+
+#trans tdp2o
+in {bp3:<..>;}
+#endtr
