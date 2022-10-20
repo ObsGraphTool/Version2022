@@ -1,15 +1,15 @@
 
 # Obs Graph Tool 2022 Readme 
 
-Brief instruction on the preparation of the Observation Graph Tool.
+Instruction on how to setup the Observation Graph Tool and use it for service composition and substitution.
 
-## Introduction about the tools
+## 1. Introduction about the tools
 
 After the tool is [prepared and compiled properly](https://github.com/ObsGraphTool/Version2022#how-to-run-this-project-locally) , use the following command at the tool's path after making the project.
 ```
 ./ObsGraph
 ```
-### User Interface
+### 1.1 User Interface
 Then there shall be an interface as follows. 
 
 ![Welcome](https://user-images.githubusercontent.com/97455443/196976602-3f5280d9-2a1d-4c61-803b-dc23bc79d19f.png)
@@ -25,7 +25,7 @@ Here I put the example in the folder /ex, it's an example about **a contractor**
 
 ![WFnetCon](https://user-images.githubusercontent.com/97455443/196978825-3badcdfa-79dc-4a75-990b-98663726c32a.png)
 
-### Composition Result Demostration
+### 1.2 Composition Result Demostration
 Then after the completion of the input, a result will show, indicating if the composition is deadlockfree or not.
 
 ![result](https://user-images.githubusercontent.com/97455443/196976597-4dc181c0-877a-48d1-80a3-498da7041cf7.png)
@@ -34,7 +34,7 @@ After the demostration of the result, you could choose **whether to substitute a
 
 ![sub](https://user-images.githubusercontent.com/97455443/196976598-7e3bb770-2194-410d-982d-46e531f51a06.png)
 
-### Service Substitution
+### 1.3 Service Substitution
 
 Here I choose substitute service No.1, which is the service of the Contractor. I will substitute it with another service called alternative Contractor(File names A1, 2, and 3 respectively the Net file, Observables, and the Final Place). The workflow net of the Alternative Contractor can be seen as follows:
 
@@ -44,16 +44,16 @@ Such alternative net will create a deadlock in the composition, the result will 
 
 ![subresult](https://user-images.githubusercontent.com/97455443/196976599-561076ac-5500-4bd1-b568-14b4b225db7a.png)
 
-### ISAP Sample
+### 1.4 ISAP Sample
 The example used for ISAP are also in the example folder /ex, and it's named by the role of the service, such as supplier.net, vendor.net or client.net, two medium net respectively m1 and m2 and their properties (Observables and Final places) are also in the folder.
 
 The WF-net of the ISAP example is shown in the below picture.
 
 ![ISAP example](https://user-images.githubusercontent.com/97455443/196983789-23e2d5c7-cbe4-4601-a76d-10f331296cf4.png)
 
-## How to run this project locally
+## 2 How to run this project locally
 
-### Make sure you have git at your local machine
+### 2.1 Make sure you have git at your local machine
 If you are using Linux you can use simply 
 ```
 git version
@@ -62,7 +62,7 @@ to check whether you have installed git on your machine. If not, it's a good ide
 ```sudo apt-get update```
 To install Git, run the following command: ```sudo apt-get install git-all```
 
-###  Clone this project to local
+###  2.2 Clone this project to local
 In the terminal, switch to the folder you are comfortable with to put the project under.and in the target folder, use the Git command to clone the project.
  
 ```
@@ -70,11 +70,11 @@ git clone https://github.com/ObsGraphTool/Version2022.git
 ```
 
 
-## Setup Instructions
+## 2.3 Setup Instructions
 
 To deploy this project, please download and unzip the file "ObsGraphToolS.zip" in the repository, **a Unix or Linux** environment is preferred to successfully compile the tool.
 
-### 1. Compiler tools to be installed
+### 2.3.1. Compiler tools to be installed
 
 In the terminal, Install the following tools. In case of using **yum**, please adapt likewise.
 
@@ -85,12 +85,12 @@ In the terminal, Install the following tools. In case of using **yum**, please a
 
 Those are the two compiler tools needed to determine some explanatory syntax in the code.
 
-### 2. Delete all the .d files in the /obj folder
+### 2.3.2. Delete all the .d files in the /obj folder
 
 If it's a newly unzipped source code, this step can be skipped. 
 If it's been run/compiled a few times, please clear the **./obj folder** to avoid errors.
 
-### 3. Make Buddy Library
+### 2.3.3. Make Buddy Library
 
 In terminal, go to the folder **./buddy22**, then **clean** first. 
 ```
@@ -116,7 +116,7 @@ cp -f src/bvec.h ./include/bvec.h
 chmod 644 ./include/bvec.h
 ```
 
-### 4. Make Parser Library
+### 2.3.4. Make Parser Library
 In the terminal, go to the folder ../parser and do the make clean + make again
 ```
 make clean
@@ -124,7 +124,7 @@ make clean
 make 
 ```
 
-### 5. Make the ObsGraphTool
+### 2.3.5. Make the ObsGraphTool
 
 In the terminal, go to the ./ObsGraphTool folder (Father folder), clean first and then make all, then the tool is ready to be tested.
 ```
@@ -143,7 +143,7 @@ If the following code appears when make clean or make , the **/obj folder** wasn
 make: *** No rule to make target '/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/iostream', needed by 'obj/Simple_MDGraph.d'.  Stop.
 
 ```
-## Related Paper
+## 3.Related Paper
 
 Examples and some algorithms used to design and test the tool can be found the following papers
 
@@ -152,5 +152,5 @@ Examples and some algorithms used to design and test the tool can be found the f
 
 [A Bottom-Up Approach to Check the Correctness of Interorganisational Workflows](https://ieeexplore.ieee.org/document/7307728)
 
-## Maintenance and Issues
+## 4.Maintenance and Issues
 If any problems or troubles are encounted during using the tool, please **raise an issue** in this repository. You can also contact Professor Hanen OCHI (Hanen.ochi@efrei.fr) or Yanwu ZHU (Yanwu.zhu@intervenants.efrei.net) via email. We would be more than happy to help with your problems.
