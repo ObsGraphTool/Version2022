@@ -1,9 +1,42 @@
 
 # Obs Graph Tool 2022 Readme 
 
-A brief instruction of the preparation of Observation Graph Tool .
+Brief instruction on the preparation of the Observation Graph Tool.
 
 ## Introduction about the tools
+
+After the tool is prepared and compiled properly, use the following command at the tool's path after making the project.
+```
+./ObsGraph
+```
+### User Interface
+Then there shall be an interface as follows. 
+![Welcome](https://user-images.githubusercontent.com/97455443/196976602-3f5280d9-2a1d-4c61-803b-dc23bc79d19f.png)
+### File input- Example Contractor and Subcontract
+Where you can indicate the number of the service you would like compose before substitution. Then carefully input the path of the example files you would like to choose.
+![enter1](https://user-images.githubusercontent.com/97455443/196976588-88087930-dd85-4d4e-a3fa-1ef027cf53de.png)
+![enter2](https://user-images.githubusercontent.com/97455443/196976594-e6abc3b6-1800-424c-bc08-8014e9aeb147.png)
+
+Here I put the example in the folder /ex, it's an example about **a contractor** (File name as 1.net, 2, 3 respectively the Net file, Observables, and the Final Place)and **a subcontractor** (File name as 4.net, 5, 6 respectively the Net file, Observables, and the Final Place). The WorkFlow-net of the model is shown below. We can see after the input of the net files is composed, the subnets have been created successfully and the pieces of information about the subnets are displayed.
+
+![WFnetCon](https://user-images.githubusercontent.com/97455443/196978825-3badcdfa-79dc-4a75-990b-98663726c32a.png)
+
+### Composition Result Demostration
+Then after the completion of the input, a result will show, indicating if the composition is deadlockfree or not.
+![result](https://user-images.githubusercontent.com/97455443/196976597-4dc181c0-877a-48d1-80a3-498da7041cf7.png)
+
+After the demostration of the result, you could choose whether to ssubstitutea service or not. 
+![sub](https://user-images.githubusercontent.com/97455443/196976598-7e3bb770-2194-410d-982d-46e531f51a06.png)
+
+### Service Substitution
+
+Here I choose substitute service No.1, which is the service of the Contractor. I will substitute it with another service called alternative Contractor(File names A1, 2, and 3 respectively the Net file, Observables, and the Final Place). The workflow net of the Alternative Contractor can be seen as follows:
+![WFnetCon](https://user-images.githubusercontent.com/97455443/196978825-3badcdfa-79dc-4a75-990b-98663726c32a.png)
+Such alternative net will create a deadlock in the composition, the result will indicate that there is a deadlock state, as follows:
+![subresult](https://user-images.githubusercontent.com/97455443/196976599-561076ac-5500-4bd1-b568-14b4b225db7a.png)
+
+### ISAP Sample
+
 ### Context
 ### Functionality
 ### ...
@@ -14,7 +47,7 @@ To deploy this project, please download and unzip the file "ObsGraphToolS.zip" i
 
 ### 1. Compiler tools to be installed
 
-In terminal, Install the following tools. In case of using **yum**, please adapt likewise.
+In the terminal, Install the following tools. In case of using **yum**, please adapt likewise.
 
 ```bash
   sudo apt-get install bison
@@ -23,7 +56,7 @@ In terminal, Install the following tools. In case of using **yum**, please adapt
 
 Those are the two compiler tools needed to determine some explanatory syntax in the code.
 
-### 2. Delete all the .d file in the /obj folder
+### 2. Delete all the .d files in the /obj folder
 
 If it's a newly unzipped source code, this step can be skipped. 
 If it's been run/compiled a few times, please clear the **./obj folder** to avoid errors.
@@ -34,7 +67,7 @@ In terminal, go to the folder **./buddy22**, then **clean** first.
 ```
 make clean
 ```
-After clean is successfully, 
+After clean is successful, 
 ```
 make
 ```
@@ -42,7 +75,7 @@ Then **Don't forget to
 ``` 
 make install
 ```
-If there such code pops out it's installed successfully
+If there is such code pops out it's installed successfully
 ```
 cp -f src/libbdd.a ./lib/libbdd.a
 chmod 644 ./lib/libbdd.a
@@ -55,7 +88,7 @@ chmod 644 ./include/bvec.h
 ```
 
 ### 4. Make Parser Library
-In terminal, go to the folder ../parser and do the make clean + make again
+In the terminal, go to the folder ../parser and do the make clean + make again
 ```
 make clean
 ~
@@ -64,7 +97,7 @@ make
 
 ### 5. Make the ObsGraphTool
 
-In terminal, go to the ./ObsGraphTool folder (Father folder) , clean first and then make all, then the tool is ready be tested.
+In the terminal, go to the ./ObsGraphTool folder (Father folder), clean first and then make all, then the tool is ready to be tested.
 ```
 make clean
 ~
@@ -93,32 +126,4 @@ Examples used to test the tool can be found in this paper
 ## Test examples/usages
 
 ```
-./ObsGraph -S ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Contractor ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor ModularModels/Contractor+SubcontractorAlt/Prod/inet_ContSubCont.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Subcontractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Subcontractor ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Subcontractor 1
-
-./ObsGraph -S ModularModels/Contractor+Subcontractor/Prod/Contractor.net -OModularModels/Contractor+Subcontractor/Prod/Obs_Contractor ModularModels/Contractor+Subcontractor/Prod/Fplace_Contractor ModularModels/Contractor+Subcontractor/Prod/inet_ContSubCont.net -OModularModels/Contractor+Subcontractor/Prod/Obs_inet_ContSubCont ModularModels/Contractor+Subcontractor/Prod/Fplace_inet_ContSubCont ModularModels/Contractor+Subcontractor/Prod/Subcontractor.net -OModularModels/Contractor+Subcontractor/Prod/Obs_Subcontractor ModularModels/Contractor+Subcontractor/Prod/Fplace_Subcontractor 1
-
-./ObsGraph -R ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Contractor ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor ModularModels/Contractor+SubcontractorAlt/Prod/inet_ContSubCont.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Subcontractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Subcontractor ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Subcontractor 1
-
-./ObsGraph -S ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net ALL ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor ModularModels/Contractor+SubcontractorAlt/Prod/inet_ContSubCont.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Subcontractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Subcontractor ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Subcontractor 1
-
-./ObsGraph -S ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net ALL ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor ModularModels/Contractor+SubcontractorAlt/Prod/inet_ContSubCont.net ALL ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_inet_ContSubCont ModularModels/Contractor+SubcontractorAlt/Prod/Subcontractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Subcontractor ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Subcontractor 1
-
-./ObsGraph ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net ALL ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor 1
-
-./ObsGraph -S ModularModels/Contractor+Subcontractor/Prod/AsynchCompoContractorSubContractor.net -OModularModels/Contractor+Subcontractor/Prod/Obs_AsynchCompoContractorSubContractor.txt ModularModels/Contractor+Subcontractor/Prod/Fplace_AsynchCompoContractorSubContractor.txt 1
-
-./ObsGraph -S -OModularModels/Contractor+Subcontractor/Prod/AsynchCompoContractorSubContractor.net ModularModels/Contractor+Subcontractor/Prod/Obs_AsynchCompoContractorSubContractor.txt ModularModels/Contractor+Subcontractor/Prod/Fplace_AsynchCompoContractorSubContractor.txt 1
-
-./ObsGraph ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net EMPTY ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor 1
-
-./ObsGraph ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net -o«order1 spec1 ship1 cost1» ModularModels/Contractor+SubcontractorAlt/Prod/Fplace_Contractor 1
-
-Exemple dead et relax sound
-./ObsGraph -R Test_relaxS_Dead -OObs_Test_not_relaxS_MAJ_mf_tf Fplace_Test_not_relaxS_MAJ_mf_tf 1
-```
-
-
-## Support
-
-For support, email hanen.ochi@efrei.fr / Yanwu.zhu@efrei.net, or post an issue at this repository.
-
+./ObsGraph -S ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Contractor ModularModel
