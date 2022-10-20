@@ -144,14 +144,9 @@ make: *** No rule to make target '/Library/Developer/CommandLineTools/usr/bin/..
 ```
 ## Related Paper
 
-Examples used to test the tool can be found in this paper
+Examples and some algorithms used to design and test the tool can be found the following papers
 
 [Symbolic abstraction and deadlock-freeness verification of inter-enterprise processes
 ](https://www.sciencedirect.com/science/article/pii/S0169023X11000140)
 
-
-
-## Test examples/usages
-
-```
-./ObsGraph -S ModularModels/Contractor+SubcontractorAlt/Prod/Contractor.net -OModularModels/Contractor+SubcontractorAlt/Prod/Obs_Contractor ModularModel
+[A Bottom-Up Approach to Check the Correctness of Interorganisational Workflows](https://ieeexplore.ieee.org/document/7307728)
