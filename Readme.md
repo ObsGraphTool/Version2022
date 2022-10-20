@@ -150,3 +150,6 @@ Examples and some algorithms used to design and test the tool can be found the f
 ](https://www.sciencedirect.com/science/article/pii/S0169023X11000140)
 
 [A Bottom-Up Approach to Check the Correctness of Interorganisational Workflows](https://ieeexplore.ieee.org/document/7307728)
+
+## Maintenance and Issues
+If any problems or troubles are encounted during using the tool, please contact Professor Hanen OCHI (Hanen.ochi@efrei.fr) or Yanwu ZHU (Yanwu.zhu@efrei.net)
