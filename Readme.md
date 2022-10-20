@@ -5,7 +5,7 @@ Brief instruction on the preparation of the Observation Graph Tool.
 
 ## Introduction about the tools
 
-After the tool is prepared and compiled properly, use the following command at the tool's path after making the project.
+After the tool is [prepared and compiled properly](https://github.com/ObsGraphTool/Version2022#how-to-run-this-project-locally) , use the following command at the tool's path after making the project.
 ```
 ./ObsGraph
 ```
