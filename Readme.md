@@ -13,6 +13,7 @@ After the tool is [prepared and compiled properly](https://github.com/ObsGraphTo
 Then there shall be an interface as follows. 
 
 ![Welcome](https://user-images.githubusercontent.com/97455443/196976602-3f5280d9-2a1d-4c61-803b-dc23bc79d19f.png)
+
 ### File input- Example Contractor and Subcontract
 Where you can indicate the number of the service you would like compose before substitution. Then carefully input the path of the example files you would like to choose.
 
@@ -29,7 +30,7 @@ Then after the completion of the input, a result will show, indicating if the co
 
 ![result](https://user-images.githubusercontent.com/97455443/196976597-4dc181c0-877a-48d1-80a3-498da7041cf7.png)
 
-After the demostration of the result, you could choose whether to ssubstitutea service or not. 
+After the demostration of the result, you could choose **whether to substitute a service or not. 
 
 ![sub](https://user-images.githubusercontent.com/97455443/196976598-7e3bb770-2194-410d-982d-46e531f51a06.png)
 
@@ -152,4 +153,4 @@ Examples and some algorithms used to design and test the tool can be found the f
 [A Bottom-Up Approach to Check the Correctness of Interorganisational Workflows](https://ieeexplore.ieee.org/document/7307728)
 
 ## Maintenance and Issues
-If any problems or troubles are encounted during using the tool, please raise an issue in this repository, or contact Professor Hanen OCHI (Hanen.ochi@efrei.fr) or Yanwu ZHU (Yanwu.zhu@intervenants.efrei.net) via email. We would be more than happy to help with your problems.
+If any problems or troubles are encounted during using the tool, please **raise an issue** in this repository. You can also contact Professor Hanen OCHI (Hanen.ochi@efrei.fr) or Yanwu ZHU (Yanwu.zhu@intervenants.efrei.net) via email. We would be more than happy to help with your problems.
