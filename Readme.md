@@ -44,12 +44,12 @@ Such alternative net will create a deadlock in the composition, the result will 
 
 ![subresult](https://user-images.githubusercontent.com/97455443/196976599-561076ac-5500-4bd1-b568-14b4b225db7a.png)
 
-### 1.4 ISAP Sample
-The example used for ISAP are also in the example folder /ex, and it's named by the role of the service, such as supplier.net, vendor.net or client.net, two medium net respectively m1 and m2 and their properties (Observables and Final places) are also in the folder.
+### 1.4 ISPA Sample
+The examples used for ISPA paper are also in the example folder /ex, and it's named by the role of the service, such as supplier.net, vendor.net or client.net, two medium net respectively m1 and m2 and their properties (Observables and Final places) are also in the folder.
 
-The WF-net of the ISAP example is shown in the below picture.
+The WF-net of the ISPA example is shown in the below picture.
 
-![ISAP example](https://user-images.githubusercontent.com/97455443/196983789-23e2d5c7-cbe4-4601-a76d-10f331296cf4.png)
+![ISPA example](https://user-images.githubusercontent.com/97455443/196983789-23e2d5c7-cbe4-4601-a76d-10f331296cf4.png)
 
 ## 2 How to run this project locally
 
